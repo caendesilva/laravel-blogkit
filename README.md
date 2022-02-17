@@ -7,7 +7,7 @@
 
 # Laravel Blog Starter Kit
 
-## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 9, TailwindCSS and Livewire!
+## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 9, TailwindCSS, and Livewire!
 
 ## Open Source Attributions
 The Starter Kit is based on Laravel Breeze
