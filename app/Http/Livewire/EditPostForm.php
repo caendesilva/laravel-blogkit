@@ -18,6 +18,7 @@ class EditPostForm extends Component
     public \App\Models\Post $post;
 
     protected $rules = [
+        'post.title' => 'required|string|max:255',
         'post.description' => 'nullable|string|max:255',
         'post.featured_image' => 'nullable|url|max:255',
         'post.body' => 'required|string',

@@ -1,8 +1,11 @@
 <div>
     <form wire:submit.prevent="save" class="text-gray-900">
         <div class="mt-3">
-            <x-label for="post.title" :value="__('Title')" />
-            <x-input type="text" class="block mt-1 w-full" maxlength="255" readonly value="{{ $post->title }}"/>
+            <x-label for="post.title">
+                {{ __('Title*') }} <small>(Note that the slug will not change)</small>
+            </x-label>
+            <x-input wire:model="post.title" type="text" class="block mt-1 w-full" maxlength="255" required autofocus placeholder="The post title"/>
+            @error('post.title') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
 
         <div class="mt-3">
