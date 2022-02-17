@@ -16,11 +16,11 @@
                         {{ __('Home') }}
                     </x-nav-link>
 
-                    @auth
+                    @can('access-dashboards')
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @endauth
+                    @endcan
                 </div>
             </div>
 

@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 
 /*
@@ -23,8 +24,6 @@ Route::get('/', function () {
 
 Route::resource('post', PostController::class);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'can:access-dashboards'])->name('dashboard');
 
 require __DIR__.'/auth.php';
