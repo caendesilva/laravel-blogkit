@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome', [
         'posts' => Post::count()
     ]);
-});
+})->name('home');
 
 Route::resource('post', PostController::class);
 
