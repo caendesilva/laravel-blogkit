@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92eb001645c221a5af09ce1d7dc06d24",
+    "content-hash": "a970db7444cfdd0ff155e2054690d98f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5144,6 +5144,108 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "davidbadura/faker-markdown-generator",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DavidBadura/FakerMarkdownGenerator.git",
+                "reference": "6fe32b77c3abe3cdf31445ba0b753a2d2f170476"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DavidBadura/FakerMarkdownGenerator/zipball/6fe32b77c3abe3cdf31445ba0b753a2d2f170476",
+                "reference": "6fe32b77c3abe3cdf31445ba0b753a2d2f170476",
+                "shasum": ""
+            },
+            "require": {
+                "davidbadura/markdown-builder": "^1.0.4",
+                "fakerphp/faker": "^1.6",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DavidBadura\\FakerMarkdownGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Badura",
+                    "email": "david.badura@patchlevel.de"
+                }
+            ],
+            "description": "Faker Markdown Generator",
+            "keywords": [
+                "faker",
+                "generator",
+                "markdown"
+            ],
+            "support": {
+                "issues": "https://github.com/DavidBadura/FakerMarkdownGenerator/issues",
+                "source": "https://github.com/DavidBadura/FakerMarkdownGenerator/tree/1.1.1"
+            },
+            "time": "2021-10-22T15:04:49+00:00"
+        },
+        {
+            "name": "davidbadura/markdown-builder",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DavidBadura/markdown-builder.git",
+                "reference": "cdc1a29eb14f3202efb0e59ac80c2acb6f883af0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DavidBadura/markdown-builder/zipball/cdc1a29eb14f3202efb0e59ac80c2acb6f883af0",
+                "reference": "cdc1a29eb14f3202efb0e59ac80c2acb6f883af0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "infection/infection": "^0.22.1",
+                "patchlevel/coding-standard": "^1.0.0",
+                "phpstan/phpstan": "^0.12.85",
+                "phpunit/phpunit": "^9.5.4",
+                "symfony/var-dumper": "^5.2.3",
+                "vimeo/psalm": "^4.7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DavidBadura\\MarkdownBuilder\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "DavidBadura",
+                    "email": "d.badura@gmx.de"
+                }
+            ],
+            "description": "Markdown Builder",
+            "keywords": [
+                "builder",
+                "markdown",
+                "render",
+                "writer"
+            ],
+            "support": {
+                "issues": "https://github.com/DavidBadura/markdown-builder/issues",
+                "source": "https://github.com/DavidBadura/markdown-builder/tree/1.1.1"
+            },
+            "time": "2021-10-23T09:22:02+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.4.0",
