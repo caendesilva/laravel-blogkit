@@ -25,7 +25,7 @@
             </div>
 
             @guest
-            @if(Route::has('login'))
+            @if(Route::has('register'))
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <x-nav-link :href="route('login')" :active="request()->routeIs('login')" class="ml-auto">
                     {{ __('Log in') }}
@@ -90,7 +90,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            @elseif(Route::has('login'))
+            @elseif(Route::has('register'))
             <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                 {{ __('Log in') }}
             </x-nav-link>
