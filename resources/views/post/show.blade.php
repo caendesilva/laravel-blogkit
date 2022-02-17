@@ -1,4 +1,16 @@
 <x-app-layout>
+	@push('meta')
+	<!-- Blog Post Meta Tags -->
+	<meta property="og:title" content="{{ $post->title }}">
+	<meta property="og:type" content="article" />
+	<meta property="og:description" content="{{ $post->description }}">
+	<meta property="og:image" content="{{ $post->featured_image }}">
+	<meta property="og:url" content="{{ route('post.show', ['post' => $post]) }}">
+	<meta property="og:article:published_time" content="{{ $post->created_at }}">
+	<meta property="og:article:modified_time " content="{{ $post->updated_at }}">
+	<meta name="twitter:card" content="summary_large_image">
+	@endpush
+
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-16">
             <article class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
