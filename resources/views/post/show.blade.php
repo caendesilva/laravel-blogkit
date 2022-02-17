@@ -12,13 +12,21 @@
 	@endpush
 
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
-        <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-16">
+        <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-8 md:my-16">
             <article class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
 				<header class="mb-5">
-					<div class="flex flex-row flex-wrap items-start justify-between">
-						<h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
-						<a href="/" class="my-2 opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
-					</div>
+					<table class="w-full">
+						<thead>
+							<tr>
+								<th class="text-left">
+									<h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
+								</th>
+								<td class="text-right whitespace-nowrap align-top pt-2 pl-5 hidden sm:block">
+									<a href="/" class="my-2 opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
+								</td>
+							</tr>
+						</thead>
+					</table>
 					<div class="text-sm mb-3">
 						<span class="opacity-75">Posted by</span>
 						<a href="" rel="author">{{ $post->author->name }}</a>
@@ -39,6 +47,11 @@
 					{!! Str::markdown($post->body) !!}
 				</div>
 			</article>
+
+			<div class="text-center dark:text-white mt-8 sm:hidden">
+				<a href="/" class="opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
+			</div>
+
         </div>
     </div>
 </x-app-layout>
