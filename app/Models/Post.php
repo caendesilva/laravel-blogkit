@@ -18,4 +18,14 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Get the author associated with the Post
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function author(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
