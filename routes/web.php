@@ -24,6 +24,10 @@ Route::get('/', function () {
 
 Route::resource('post', PostController::class);
 
+Route::get('/author/{user}', function () {
+    return "Coming in next update.";
+})->name('author');
+
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'can:access-dashboards'])->name('dashboard');
 
 require __DIR__.'/auth.php';
