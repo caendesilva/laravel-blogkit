@@ -9,7 +9,9 @@
 
             <livewire:latest-blog-posts />
             @else
-            <h2>There are no posts here!</h2>
+            <header class="text-center py-5 mt-5 mb-3">
+                <h2 class="text-2xl font-medium dark:text-white">There are no posts here!</h2>
+            </header>
             @endif
         </section>
     </div>
