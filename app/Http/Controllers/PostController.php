@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('/', 301);
     }
 
     /**
