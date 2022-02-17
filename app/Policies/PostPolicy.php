@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Auth\Access\Response;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
@@ -18,7 +19,7 @@ class PostPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +31,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +42,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+       return $user->is_admin || $user->is_author;
     }
 
     /**
@@ -49,11 +50,16 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return \Illuminate\Auth\Access\Response
      */
     public function update(User $user, Post $post)
     {
-        //
+        if ($user->is_admin == true) {
+            return true;
+        }
+        return $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 
     /**
@@ -61,11 +67,16 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return \Illuminate\Auth\Access\Response
      */
     public function delete(User $user, Post $post)
     {
-        //
+        if ($user->is_admin == true) {
+            return true;
+        }
+        return $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 
     /**
@@ -73,11 +84,16 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return \Illuminate\Auth\Access\Response
      */
     public function restore(User $user, Post $post)
     {
-        //
+        if ($user->is_admin == true) {
+            return true;
+        }
+        return $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 
     /**
@@ -85,10 +101,15 @@ class PostPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return \Illuminate\Auth\Access\Response
      */
     public function forceDelete(User $user, Post $post)
     {
-        //
+        if ($user->is_admin == true) {
+            return true;
+        }
+        return $user->id === $post->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this post.');
     }
 }
