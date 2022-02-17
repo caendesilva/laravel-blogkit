@@ -7,11 +7,8 @@
                     <h1 class="text-3xl font-bold dark:text-white my-3">{{ config('app.name') }}</h1>
                     <h2 class="text-2xl font-medium dark:text-white">Latest Blog Posts</h2>
                 </header>
-                <div class="flex flex-row flex-wrap justify-start">
-                    @foreach ($posts as $post)
-                        <x-post-card :post="$post" />
-                    @endforeach
-                </div>
+
+                <livewire:latest-blog-posts />
             </div>
             @else
             <h2>There are no posts here!</h2>

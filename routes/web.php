@@ -17,7 +17,7 @@ use App\Models\Post;
 
 Route::get('/', function () {
     return view('welcome', [
-        'posts' => Post::all()
+        'posts' => Post::count()
     ]);
 });
 
