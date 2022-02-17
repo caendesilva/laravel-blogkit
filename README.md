@@ -9,6 +9,9 @@
 
 ## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 9, TailwindCSS, AlpineJS, and Livewire!
 
+## Get Started
+Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
+
 ## Open Source Attributions
 The Starter Kit is based on Laravel Breeze
 
