@@ -1,9 +1,8 @@
 <div>
     <form wire:submit.prevent="save" class="text-gray-900">
         <div class="mt-3">
-            <x-label for="post.title" :value="__('Title*')" />
-            <x-input wire:model="post.title" type="text" class="block mt-1 w-full" maxlength="255" required autofocus placeholder="The post title"/>
-            @error('post.title') <span class="text-red-500">{{ $message }}</span> @enderror
+            <x-label for="post.title" :value="__('Title')" />
+            <x-input type="text" class="block mt-1 w-full" maxlength="255" readonly value="{{ $post->title }}"/>
         </div>
 
         <div class="mt-3">
@@ -20,7 +19,7 @@
 
         <div class="mt-3">
             <x-label for="post.body" :value="__('Body*')" />
-            <x-textarea wire:model.lazy="post.body" class="block mt-1 w-full" required placeholder="Main content of the post" rows="8"></x-textarea>
+            <x-textarea wire:model="post.body" class="block mt-1 w-full" required placeholder="Main content of the post" rows="8"></x-textarea>
             @error('post.body') <span class="text-red-500">{{ $message }}</span> @enderror
         </div>
 

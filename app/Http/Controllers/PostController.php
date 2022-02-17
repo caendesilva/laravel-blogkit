@@ -28,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        // Authorize
+        $this->authorize('create', App\Models\Post::class);
+
         return view('post.create');
     }
 
@@ -53,7 +54,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+        
+        return view('post.edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -68,6 +73,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return back()->with('success', 'Succesfully Deleted Post!');
+        return back()->with('success', 'Successfully Deleted Post!');
     }
 }

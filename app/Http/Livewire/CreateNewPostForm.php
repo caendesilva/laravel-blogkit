@@ -6,9 +6,12 @@ use App\Models\Post;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CreateNewPostForm extends Component
 {
+    use AuthorizesRequests;
+
     /**
      * The post instance.
      * 
@@ -30,7 +33,7 @@ class CreateNewPostForm extends Component
 
     public function save()
     {
-        // Authorize
+        $this->authorize('create', App\Models\Post::class);
 
         $this->validate();
  
