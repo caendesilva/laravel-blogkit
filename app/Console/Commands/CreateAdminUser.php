@@ -56,7 +56,7 @@ class CreateAdminUser extends Command
                 }
             }
             try {
-                User::create([
+                User::forceCreate([
                     'name' => $name,
                     'email' => $email,
                     'email_verified_at' => now(),
