@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('slug', 255)
                 ->unique(); // Make the slug an index
 
-            $table->string('featured_image', 255)->nullable(); // Post cover and social sharing image
+            $table->string('description', 255)->nullable(); // The Post Description, used in SEO and Post Previews
 
-            $table->text('description'); // The Post Description, used in SEO and Post Previews
+            $table->string('featured_image', 255)->nullable(); // Post cover and social sharing image
 
             $table->longText('body'); // The Post Body
             $table->timestamps();
