@@ -13,7 +13,7 @@ class LatestBlogPosts extends Component
     public function render()
     {
         return view('livewire.latest-blog-posts', [
-            'posts' => Post::paginate(12),
+            'posts' => Post::orderBy('created_at', 'desc')->paginate(12),
         ]);
     }
 }
