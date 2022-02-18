@@ -86,8 +86,10 @@
 						Please verify your email to comment. <x-link :href="route('verification.notice')">Resend email?</x-link>
 					@endcan
 					@guest
-						<x-link :href="route('login')">Log in</x-link> or 
-						<x-link :href="route('register')">sign up</x-link>
+						<x-link :href="route('login')">Log in</x-link> 
+						@if(Route::has('register'))
+						or <x-link :href="route('register')">sign up</x-link>
+						@endif
 						to leave a comment! 
 					@endguest
 				</footer>
