@@ -54,9 +54,14 @@
 						<ul>
 							@foreach ($post->comments as $comment)
 							<li id="comment-{{ $comment->id }}" class="rounded-lg bg-gray-200 dark:bg-gray-700 p-4 my-4 relative group">
-								<a href="{{ route('author', $comment->user) }}">
-									<small class="opacity-75">&commat;</small>{{ $comment->user->name }}:
-								</a>
+								<div>
+									<a href="{{ route('author', $comment->user) }}">
+										<small class="opacity-75">&commat;</small>{{ $comment->user->name }}:
+									</a>
+									@if($comment->created_at != $comment->updated_at)
+										<i class="text-xs opacity-75" title="This comment was last updated {{ $comment->updated_at }}">Edited</i>
+									@endif
+								</div>
 								<p class="ml-2 mt-2 pl-2 border-l-2 border-gray-300 dark:border-gray-600">
 									{{-- Escape the content and replace newlines with line breaks --}}
 									{!! nl2br(e($comment->content)) !!}
