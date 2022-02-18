@@ -1,12 +1,6 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 dark:text-white">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5">
-                <div class="p-6 bg-white dark:bg-gray-800">
-                    You're logged in!
-                </div>
-            </div>
-
             @if(session('success'))
             <div class="bg-green-300 overflow-hidden shadow-sm sm:rounded-lg mb-5">
                 <div class="py-3 px-4 text-green-900">
@@ -15,7 +9,7 @@
             </div>
             @endif
             @if($posts)
-            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5 overflow-y-auto" style="max-height: 75vh;">
+            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5">
                 <div class="p-6 bg-white dark:bg-gray-800">
                     <header class="flex flex-row justify-between items-center">
                         <h3 class="text-xl font-bold mb-5">Manage Posts</h3>
@@ -26,7 +20,7 @@
 
                     @if($posts)
                     <!-- Desktop Version -->
-                    <div class="hidden sm:block">
+                    <div class="hidden sm:block overflow-y-auto" style="max-height: 75vh;">
                         <table class="w-full table-auto border-collapse border border-slate-500">
                             <thead>
                                 <tr>
@@ -45,9 +39,11 @@
                                         </a>
                                     </td>
                                     <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
-                                        <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
-                                            {{ $post->title }}
-                                        </a>
+                                        <div class="overflow-hidden text-ellipsis">
+                                            <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
+                                                {{ $post->title }}
+                                            </a>
+                                        </div>
                                     </td>
                                     <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
                                         {{ $post->created_at->format('Y-m-d')}}
@@ -72,7 +68,7 @@
                         </table>
                     </div>
                     <!-- Mobile Version -->
-                    <div class="sm:hidden">
+                    <div class="sm:hidden overflow-y-auto" style="max-height: 75vh;">
                         <table class="w-full table-auto">
                             @foreach ($posts as $post)
                             <tbody class="text-gray:700 dark:text-gray-300">
@@ -130,7 +126,7 @@
             @endif
 
             @if($users)
-            <section class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-5 overflow-y-auto" style="max-height: 75vh;
+            <section class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-5 overflow-y-auto" style="max-height: 75vh;">
                 <header class="bg-white dark:bg-gray-800">
                    <h3 class="text-xl font-bold mb-5">Manage Users</h3> 
                 </header>
@@ -188,18 +184,18 @@
                 </table>
             </section>
             @push('scripts')
-                <livewire:edit-user-form-modal />
+            <livewire:edit-user-form-modal />
 
-                <script>
-                    /**
-                     * Open the Livewire Edit User Modal
-                     * 
-                     * @param integer (user) id
-                     */
-                    function openEditUserModal(id) {
-                        Livewire.emit('openEditUserModal', id)
-                    }
-                </script>
+            <script>
+                /**
+                 * Open the Livewire Edit User Modal
+                 * 
+                 * @param integer (user) id
+                 */
+                function openEditUserModal(id) {
+                    Livewire.emit('openEditUserModal', id)
+                }
+            </script>
             @endpush
             @endif
         </div>
