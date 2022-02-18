@@ -1882,6 +1882,10 @@ body.disable-scroll #theme-toggle {
   --tw-text-opacity: 1;
   color: rgb(243 244 246 / var(--tw-text-opacity));
 }
+.hover\:text-indigo-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(67 56 202 / var(--tw-text-opacity));
+}
 .hover\:opacity-100:hover {
   opacity: 1;
 }

@@ -10,6 +10,11 @@
                 {{ $post->title }}
             </h3>
         </a>
+        <p class="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400 overflow-hidden text-ellipsis">
+            By <x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
+            <span class="opacity-75" role="none">&bullet;</span>
+            <time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d') }}</time>.
+        </p>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 overflow-hidden text-ellipsis">
             {{ $post->description }}
         </p>
