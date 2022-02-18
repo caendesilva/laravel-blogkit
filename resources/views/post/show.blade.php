@@ -29,7 +29,7 @@
 					</table>
 					<div class="text-sm mb-3">
 						<span class="opacity-75">Posted by</span>
-						<a href="" rel="author">{{ $post->author->name }}</a>
+						<x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
 						<span class="opacity-75">
 							<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:sa') }}</time>.
 							@if($post->created_at !== $post->updated_at)
