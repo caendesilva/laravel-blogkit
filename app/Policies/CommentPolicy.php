@@ -23,6 +23,10 @@ class CommentPolicy
             return Response::deny('Commenting is not allowed.');
         }
 
+        if (config('blog.requireVerifiedEmailForComments') && !$user->hasVerifiedEmail()) {
+            return Response::deny('Your email must be verified to comment.');
+        }
+
         if ($user->is_admin == true) {
             return true;
         }
@@ -43,6 +47,10 @@ class CommentPolicy
     {
         if (!config('blog.allowComments')) {
             return Response::deny('Commenting is not allowed.');
+        }
+
+        if (config('blog.requireVerifiedEmailForComments') && !$user->hasVerifiedEmail()) {
+            return Response::deny('Your email must be verified to comment.');
         }
 
         if ($user->is_admin == true) {

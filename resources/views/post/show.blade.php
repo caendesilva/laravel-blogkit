@@ -82,6 +82,8 @@
 						<div class="mt-3">
 							<livewire:create-new-comment-form :post="$post">
 						</div>
+					@elseif(Gate::inspect('create', App\Models\Comment::class)->message() == "Your email must be verified to comment.")
+						Please verify your email to comment. <x-link :href="route('verification.notice')">Resend email?</x-link>
 					@endcan
 					@guest
 						<x-link :href="route('login')">Log in</x-link> or 
