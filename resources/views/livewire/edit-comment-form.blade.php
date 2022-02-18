@@ -7,7 +7,7 @@
                 <div>@error('comment.content') <span class="text-red-500">{{ $message }}</span> @enderror</div>
         
                 <div class="flex items-center justify-end mt-4">
-                    <x-button-secondary :href="route('post.show', $comment->post) . '#comment-' . $this->comment->id">
+                    <x-button-secondary :href="route('posts.show', $comment->post) . '#comment-' . $this->comment->id">
                         Cancel
                     </x-button-secondary>
                     <x-button class="ml-4">

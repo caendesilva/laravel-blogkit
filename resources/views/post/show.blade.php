@@ -5,7 +5,7 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:description" content="{{ $post->description }}">
 	<meta property="og:image" content="{{ $post->featured_image }}">
-	<meta property="og:url" content="{{ route('post.show', ['post' => $post]) }}">
+	<meta property="og:url" content="{{ route('posts.show', ['post' => $post]) }}">
 	<meta property="og:article:published_time" content="{{ $post->created_at }}">
 	<meta property="og:article:modified_time " content="{{ $post->updated_at }}">
 	<meta name="twitter:card" content="summary_large_image">

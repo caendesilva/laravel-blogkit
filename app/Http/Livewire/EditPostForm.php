@@ -38,7 +38,7 @@ class EditPostForm extends Component
 
         $this->post->save();
 
-        return redirect()->route('post.show', ['post' => $this->post]);
+        return redirect()->route('posts.show', ['post' => $this->post]);
     }
 
     public function render()

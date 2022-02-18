@@ -23,7 +23,7 @@ class EditCommentForm extends Component
         $this->validate();
  
         $this->comment->save();
-        return redirect()->to(route('post.show', ['post' => $this->comment->post]) . "#comment-" . $this->comment->id);
+        return redirect()->to(route('posts.show', ['post' => $this->comment->post]) . "#comment-" . $this->comment->id);
     }
 
     public function render()

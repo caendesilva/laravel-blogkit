@@ -23,7 +23,7 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::resource('post', PostController::class);
+Route::resource('posts', PostController::class);
  
 Route::resource('comments', CommentController::class)->only([
     'edit',

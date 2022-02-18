@@ -24,7 +24,7 @@
                     <header class="flex flex-row justify-between items-center">
                         <h3 class="text-xl font-bold mb-5">Manage Posts</h3>
                         @can('create', App\Models\Post::class)
-                        <a href="{{ route('post.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-black uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-300 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mb-5">New Post</a>
+                        <a href="{{ route('posts.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-black uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-300 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mb-5">New Post</a>
                         @endcan
                     </header>
 
@@ -50,7 +50,7 @@
                                     </x-td>
                                     <x-td>
                                         <div class="overflow-hidden text-ellipsis">
-                                            <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
+                                            <a href="{{ route('posts.show', ['post' => $post]) }}" class="hover:text-indigo-500">
                                                 {{ $post->title }}
                                             </a>
                                         </div>
@@ -60,12 +60,12 @@
                                     </x-td>
                                     <x-td class="text-center">
                                         @can('update', $post)
-                                        <a href="{{ route('post.edit', ['post' => $post]) }}">
+                                        <a href="{{ route('posts.edit', ['post' => $post]) }}">
                                             Edit
                                         </a>
                                         @endcan
                                         @can('delete', $post)
-                                        <form action="{{ route('post.destroy', ['post' => $post]) }}" method="POST" class="inline ml-3" onSubmit="return confirm('Are you sure you want to delete this post?')">
+                                        <form action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST" class="inline ml-3" onSubmit="return confirm('Are you sure you want to delete this post?')">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit">Delete</button>
@@ -85,7 +85,7 @@
                                 <tr>
                                     <x-th>Title</x-th>
                                     <x-th class="lg:py-2 text-left">
-                                        <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
+                                        <a href="{{ route('posts.show', ['post' => $post]) }}" class="hover:text-indigo-500">
                                             {{ $post->title }}
                                         </a>
                                     </x-th>
@@ -109,12 +109,12 @@
                                     <x-th>Actions</x-th>
                                     <x-td>
                                         @can('update', $post)
-                                        <a href="{{ route('post.edit', ['post' => $post]) }}">
+                                        <a href="{{ route('posts.edit', ['post' => $post]) }}">
                                             Edit
                                         </a>
                                         @endcan
                                         @can('delete', $post)
-                                        <form action="{{ route('post.destroy', ['post' => $post]) }}" method="POST" class="inline ml-3" onSubmit="return confirm('Are you sure you want to delete this post?')">
+                                        <form action="{{ route('posts.destroy', ['post' => $post]) }}" method="POST" class="inline ml-3" onSubmit="return confirm('Are you sure you want to delete this post?')">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit">Delete</button>
@@ -290,7 +290,7 @@
                                     </a>
                                 </x-td>
                                 <x-td>
-                                    <a href="{{ route('post.show', $comment->post) }}" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.show', $comment->post) }}" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $comment->post->id }}
                                         {{ $comment->post->title }}
                                     </a>
@@ -337,7 +337,7 @@
                             <tr>
                                 <x-th>Post</x-th>
                                 <x-td>
-                                    <a href="{{ route('post.show', $comment->post) }}" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.show', $comment->post) }}" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $comment->post->id }}
                                         {{ $comment->post->title }}
                                     </a>

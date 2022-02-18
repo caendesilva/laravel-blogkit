@@ -40,7 +40,7 @@ class CreateNewCommentForm extends Component
 
         $comment->save();
 
-        return redirect()->route('post.show', ['post' => $this->post]);
+        return redirect()->route('posts.show', ['post' => $this->post]);
     }
 
     public function render()
