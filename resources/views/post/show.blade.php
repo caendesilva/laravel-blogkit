@@ -46,6 +46,50 @@
 				<div class="prose dark:prose-invert">
 					{!! Str::markdown($post->body) !!}
 				</div>
+
+				@if(config('blog.allowComments'))
+				<footer class="border-t-2 dark:border-gray-600 mt-8 pt-5">
+					<h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h2>
+					@if($post->comments)
+						<ul>
+							@foreach ($post->comments as $comment)
+							<li id="comment-{{ $comment->id }}" class="rounded-lg bg-gray-200 dark:bg-gray-700 p-4 my-4 relative group">
+								<a href="{{ route('author', $comment->user) }}">
+									<small class="opacity-75">&commat;</small>{{ $comment->user->name }}:
+								</a>
+								<p class="ml-2 mt-2 pl-2 border-l-2 border-gray-300 dark:border-gray-600">
+									{{-- Escape the content and replace newlines with line breaks --}}
+									{!! nl2br(e($comment->content)) !!}
+								</p>
+
+								@can('delete', $comment)
+								<form action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="POST" class="absolute top-3 right-4" onSubmit="return confirm('Are you sure you want to delete this comment?')">
+									@method('DELETE')
+									@csrf
+									@can('update', $comment)
+									<a class="font-semibold dark:font-medium mr-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity" href="{{ route('comments.edit', ['comment' => $comment]) }}">
+										Edit
+									</a>
+									@endcan
+									<button type="submit" class="font-semibold dark:font-medium text-red-600 dark:text-red-500 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity">Delete</button>
+								</form>
+								@endcan
+							</li>
+							@endforeach
+						</ul>
+					@endif
+					@can('create', App\Models\Comment::class)
+						<div class="mt-3">
+							<livewire:create-new-comment-form :post="$post">
+						</div>
+					@endcan
+					@guest
+						<x-link :href="route('login')">Log in</x-link> or 
+						<x-link :href="route('register')">sign up</x-link>
+						to leave a comment! 
+					@endguest
+				</footer>
+				@endif
 			</article>
 
 			<div class="text-center dark:text-white mt-8 sm:hidden">

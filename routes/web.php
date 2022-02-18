@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -23,6 +24,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('post', PostController::class);
+ 
+Route::resource('comments', CommentController::class)->only([
+    'edit',
+    'destroy',
+]);
 
 Route::get('/author/{user}', [PostController::class, 'authorIndex'])->name('author');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -28,6 +29,11 @@ class DashboardController extends Controller
             $posts = Post::all();
 
             $users = User::all();
+
+            // If comments are enabled or if there are comments we load them
+            if (config('blog.allowComments') || Comment::count()) {
+                $comments = Comment::all();
+            }
         }
 
         // Otherwise if the user is an author we show their posts
@@ -39,6 +45,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'posts' => $posts ?? false,
             'users' => $users ?? false,
+            'comments' => $comments ?? false,
         ]);
     }
 }

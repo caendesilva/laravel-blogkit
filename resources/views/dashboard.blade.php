@@ -255,6 +255,128 @@
                     </table>
                 </div>
             </section>
+
+
+
+            
+            @if($comments)
+            <section class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-5 mt-10">
+                <header class="bg-white dark:bg-gray-800">
+                   <h3 class="text-xl font-bold mb-5">Manage Comments</h3> 
+                </header>
+                
+                @if(!$comments->count())
+                    There are no comments here.
+                @endif
+                
+                <!-- Desktop Version -->
+                <div class="hidden sm:block overflow-y-auto" style="max-height: 75vh;">
+                    <table class="w-full table-auto border-collapse border border-slate-500">
+                        <thead>
+                            <tr>
+                                <x-th>User</x-th>
+                                <x-th>Post</x-th>
+                                <x-th>Comment</x-th>
+                                <x-th>Actions</x-th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray:700 dark:text-gray-300">
+                            @foreach ($comments as $comment)
+                            <tr>
+                                <x-td>
+                                    <a href="{{ route('author', ['user' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
+                                        <small class="opacity-75">#</small>{{ $comment->user->id }}
+                                        {{ $comment->user->name }}
+                                    </a>
+                                </x-td>
+                                <x-td>
+                                    <a href="{{ route('post.show', $comment->post) }}" class="hover:text-indigo-500">
+                                        <small class="opacity-75">#</small>{{ $comment->post->id }}
+                                        {{ $comment->post->title }}
+                                    </a>
+                                </x-td>
+                                <x-td>
+                                    {{ $comment->content }}
+                                </x-td>
+                                <x-td class="text-center">
+                                    <div class="flex">
+                                        @can('update', $comment)
+                                        <a class="mx-2" href="{{ route('comments.edit', ['comment' => $comment]) }}">
+                                            Edit
+                                        </a>
+                                        @endcan
+                                        @can('delete', $comment)
+                                        <form class="mx-2" action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="POST" onSubmit="return confirm('Are you sure you want to delete this comment?')">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit">Delete</button>
+                                        </form>
+                                        @endcan
+                                    </div>
+                                </x-td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile Version -->
+                <div class="sm:hidden overflow-y-auto" style="max-height: 75vh;">
+                    <table class="w-full table-auto">
+                        @foreach ($posts as $post)
+                        <tbody class="text-gray:700 dark:text-gray-300">
+                            <tr>
+                                <x-th>User</x-th>
+                                <x-td>
+                                    <a href="{{ route('author', ['user' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
+                                        <small class="opacity-75">#</small>{{ $comment->user->id }}
+                                        {{ $comment->user->name }}
+                                    </a>
+                                </x-td>
+                            </tr>
+                            <tr>
+                                <x-th>Post</x-th>
+                                <x-td>
+                                    <a href="{{ route('post.show', $comment->post) }}" class="hover:text-indigo-500">
+                                        <small class="opacity-75">#</small>{{ $comment->post->id }}
+                                        {{ $comment->post->title }}
+                                    </a>
+                                </x-td>
+                            </tr>
+                            <tr>
+                                <x-th>Comment</x-th> 
+                                <x-td>
+                                    {{ $comment->content }}
+                                </x-td>
+                            </tr>
+                            <tr>
+                                <x-th>Actions</x-th>
+                                <x-td>
+                                    @can('update', $comment)
+                                    <a href="{{ route('comments.edit', ['comment' => $comment]) }}">
+                                        Edit
+                                    </a>
+                                    @endcan
+                                    @can('delete', $comment)
+                                    <form action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="POST" onSubmit="return confirm('Are you sure you want to delete this comment?')">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                    @endcan
+                                </x-td>
+                            </tr>
+                            <!-- Spacer Row -->
+                            <tr role="none">
+                                <x-td colspan="2">&nbsp;</x-td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                    </table>
+                </div>
+            </section>
+            @endif
+
             @push('scripts')
             <livewire:edit-user-form-modal />
 
