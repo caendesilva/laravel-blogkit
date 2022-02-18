@@ -185,7 +185,7 @@
                                         @endif
                                     </div>
                                 </x-td>
-                                <x-td>
+                                <x-td class="text-center">
                                     <button onclick="openEditUserModal('{{ $user->id }}')">
                                         Manage
                                     </button>
