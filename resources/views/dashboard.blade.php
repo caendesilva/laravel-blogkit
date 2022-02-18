@@ -299,7 +299,7 @@
                                     {{ $comment->content }}
                                 </x-td>
                                 <x-td class="text-center">
-                                    <div class="flex">
+                                    <div class="flex justify-center">
                                         @can('update', $comment)
                                         <a class="mx-2" href="{{ route('comments.edit', ['comment' => $comment]) }}">
                                             Edit
