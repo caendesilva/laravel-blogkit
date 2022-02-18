@@ -25,6 +25,14 @@ Once you have installed the Laravel app you can use the helper command to create
 3. In your terminal, run `php artisan admin:create` and follow the on-screen instructions to create an admin account. Make sure to set a strong password or passphrase!
 4. Next, follow the instructions in the [Official Deployment Documentation](https://laravel.com/docs/9.x/deployment) to ensure you are following the best practices.
 
+## Contribute!
+PRs are very much welcome!
+
+Current todo list:
+- [ ] Add Sweet Alerts, or similar, to handle session flashes
+- [ ] Add "load more" style pagination to comments
+- [ ] Add this readme as a page on the demo site
+
 ## Open Source Attributions
 The Starter Kit is based on Laravel Breeze
 
