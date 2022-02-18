@@ -48,7 +48,7 @@
 				</div>
 
 				@if(config('blog.allowComments'))
-				<footer class="border-t-2 dark:border-gray-600 mt-8 pt-5">
+				<footer class="border-t-2 dark:border-gray-600 mt-8 pt-5 pb-2">
 					<h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h2>
 					@if($post->comments)
 						<ul>
