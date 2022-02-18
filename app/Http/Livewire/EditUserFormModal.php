@@ -87,6 +87,8 @@ class EditUserFormModal extends Component
      */
     public function save()
     {
+        abort_if(config('blog.demoMode'), 403, 'Cannot do this action in demo mode.');
+
         // Authorize the request
         $this->authorize('update', $this->user);
 
@@ -104,6 +106,8 @@ class EditUserFormModal extends Component
      */
     public function deleteUser()
     {
+        abort_if(config('blog.demoMode'), 403, 'Cannot do this action in demo mode.');
+
         // Authorize the request
         $this->authorize('delete', $this->user);
 

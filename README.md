@@ -12,6 +12,19 @@
 ## Get Started
 Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
 
+### How to set up the blog using the demo settings
+**Important! This guide is just to demo the site. For production use you must follow the production guide as this guide allows anyone to log in as admin! **
+
+1. Clone the git repo
+2. In the config file `config\blog.php` change `demoMode` to `true`
+3. In your terminal, run `php artisan migrate --seed`
+
+### How to set up the blog for production
+1. Clone the git repo
+2. In your terminal, run `php artisan migrate`
+3. In your terminal, run `php artisan admin:create` and follow the on-screen instructions to create an admin account. Make sure to set a strong password or passphrase!
+4. Next, follow the instructions in the [Official Deployment Documentation](https://laravel.com/docs/9.x/deployment) to ensure you are following the best practices.
+
 ## Open Source Attributions
 The Starter Kit is based on Laravel Breeze
 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class PostSeeder extends Seeder
 {
@@ -14,6 +15,10 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Post::factory(12)->create();
+        if (!User::count()) {
+            User::factory(10)->create();
+        }
+
+        \App\Models\Post::factory(36)->create();
     }
 }

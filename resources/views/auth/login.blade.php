@@ -6,6 +6,39 @@
             </a>
         </x-slot>
 
+        @if(config('blog.demoMode'))
+        <blockquote class="mb-5 border-l-2 pl-3">
+            <strong>
+                Demo Mode Active
+            </strong>    
+            <div>
+                You can log in using any of these pre-configured accounts.
+                @if(Route::has('register'))
+                Or <a href="{{ route('register') }}" class="text-indigo-500">register</a> for your own guest account.
+                @endif
+                <ul class="my-2">
+                    <li>
+                        <strong>Admin:</strong>
+                        admin@example.org
+                    </li>
+                    <li>
+                        <strong>Author:</strong>
+                        author@example.org
+                    </li>
+                    <li>
+                        <strong>Guest:</strong>
+                        guest@example.org
+                    </li>
+                </ul>
+
+                All accounts have the password "password"
+            </div>
+            <ul>
+    
+            </ul>
+        </blockquote>
+        @endif
+
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

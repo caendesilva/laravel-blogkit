@@ -8,6 +8,16 @@
                 </div>
             </div>
             @endif
+
+            @if(config('blog.demoMode'))
+            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5 text-black dark:text-white">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-1">App is in demo mode!</h3>
+                    <strong>User created posts are hidden from the blog index and the database is reset every six hours.</strong>
+                </div>
+            </section>
+            @endif
+
             @if($posts)
             <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5">
                 <div class="p-6 bg-white dark:bg-gray-800">

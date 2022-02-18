@@ -15,7 +15,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        if (config('blog.demoMode')) {
+            $schedule->command('demo:reset')->everySixHours();
+        }
     }
 
     /**
