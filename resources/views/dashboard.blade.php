@@ -34,31 +34,31 @@
                         <table class="w-full table-auto border-collapse border border-slate-500">
                             <thead>
                                 <tr>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Author</th>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Title</th>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Date</th>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Actions</th>
+                                    <x-th>Author</x-th>
+                                    <x-th>Title</x-th>
+                                    <x-th>Date</x-th>
+                                    <x-th>Actions</x-th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray:700 dark:text-gray-300">
                                 @foreach ($posts as $post)
                                 <tr>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    <x-td>
                                         <a href="{{ route('author', ['user' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
                                             {{ $post->author->name }}
                                         </a>
-                                    </td>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    </x-td>
+                                    <x-td>
                                         <div class="overflow-hidden text-ellipsis">
                                             <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
                                                 {{ $post->title }}
                                             </a>
                                         </div>
-                                    </td>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    </x-td>
+                                    <x-td>
                                         {{ $post->created_at->format('Y-m-d')}}
-                                    </td>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2 text-center">
+                                    </x-td>
+                                    <x-td class="text-center">
                                         @can('update', $post)
                                         <a href="{{ route('post.edit', ['post' => $post]) }}">
                                             Edit
@@ -71,7 +71,7 @@
                                             <button type="submit">Delete</button>
                                         </form>
                                         @endcan
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -83,31 +83,31 @@
                             @foreach ($posts as $post)
                             <tbody class="text-gray:700 dark:text-gray-300">
                                 <tr>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Title</th>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3 lg:py-2 text-left">
+                                    <x-th>Title</x-th>
+                                    <x-th class="lg:py-2 text-left">
                                         <a href="{{ route('post.show', ['post' => $post]) }}" class="hover:text-indigo-500">
                                             {{ $post->title }}
                                         </a>
-                                    </th>
+                                    </x-th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Author</th>
+                                    <x-th>Author</x-th>
 
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    <x-td>
                                         <a href="{{ route('author', ['user' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
                                             {{ $post->author->name }}
                                         </a>
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <tr>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Date</th>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    <x-th>Date</x-th>
+                                    <x-td>
                                         {{ $post->created_at->format('Y-m-d')}}
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <tr>
-                                    <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Actions</th>
-                                    <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                    <x-th>Actions</x-th>
+                                    <x-td>
                                         @can('update', $post)
                                         <a href="{{ route('post.edit', ['post' => $post]) }}">
                                             Edit
@@ -120,11 +120,11 @@
                                             <button type="submit">Delete</button>
                                         </form>
                                         @endcan
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <!-- Spacer Row -->
                                 <tr role="none">
-                                    <td colspan="2">&nbsp;</td>
+                                    <x-td colspan="2">&nbsp;</x-td>
                                 </tr>
                             </tbody>
                             @endforeach
@@ -146,27 +146,27 @@
                     <table class="w-full table-auto border-collapse border border-slate-500">
                         <thead>
                             <tr>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">ID</th>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Name</th>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Email</th>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Role</th>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Actions</th>
+                                <x-th>ID</x-th>
+                                <x-th>Name</x-th>
+                                <x-th>Email</x-th>
+                                <x-th>Role</x-th>
+                                <x-th>Actions</x-th>
                             </tr>
                         </thead>
                         <tbody class="text-gray:700 dark:text-gray-300">
                             @foreach ($users as $user)
                             <tr>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <x-td>
                                     <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $user->id }}
                                     </a>
-                                </td>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                </x-td>
+                                <x-td>
                                     <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         {{ $user->name }}
                                     </a>
-                                </td>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                </x-td>
+                                <x-td>
                                     {{ $user->email }}
                                     @if($user->email_verified_at)
                                         <span title="Email Verified">
@@ -174,8 +174,8 @@
                                             <svg class="fill-green-400 inline" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                                         </span>
                                     @endif
-                                </td>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                </x-td>
+                                <x-td>
                                     <div class="flex flex-row flex-wrap">
                                         @if($user->is_admin)
                                         <span class="rounded-lg bg-orange-400 text-orange-900 px-2 py-1 text-xs uppercase font-bold m-1">Admin</span>                                    
@@ -184,12 +184,12 @@
                                         <span class="rounded-lg bg-blue-400 text-blue-900 px-2 py-1 text-xs uppercase font-bold m-1">Author</span>                                    
                                         @endif
                                     </div>
-                                </td>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                </x-td>
+                                <x-td>
                                     <button onclick="openEditUserModal('{{ $user->id }}')">
                                         Manage
                                     </button>
-                                </td>
+                                </x-td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -201,18 +201,18 @@
                         @foreach ($posts as $post)
                         <tbody class="text-gray:700 dark:text-gray-300">
                             <tr>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">User</th>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3 lg:py-2 text-left">
+                                <x-th>User</x-th>
+                                <x-th class="lg:py-2 text-left">
                                     <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $user->id }}
                                         {{ $user->name }}
                                     </a>
-                                </td>
+                                </x-th>
                             </tr>
                            
                             <tr>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Email</th>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <x-th>Email</x-th>
+                                <x-td>
                                     <div class="break-all">
                                         {{ $user->email }}
                                         @if($user->email_verified_at)
@@ -222,11 +222,11 @@
                                             </span>
                                         @endif
                                     </div>
-                                </td>
+                                </x-td>
                             </tr>
                             <tr>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Role</th>
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <x-th>Role</x-th>
+                                <x-td>
                                     <div class="flex flex-row flex-wrap">
                                         @if($user->is_admin)
                                         <span class="rounded-lg bg-orange-400 text-orange-900 px-2 py-1 text-xs uppercase font-bold m-1">Admin</span>                                    
@@ -235,20 +235,20 @@
                                         <span class="rounded-lg bg-blue-400 text-blue-900 px-2 py-1 text-xs uppercase font-bold m-1">Author</span>                                    
                                         @endif
                                     </div>
-                                </td>
+                                </x-td>
                             </tr>
                             <tr>
-                                <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Actions</th>
+                                <x-th>Actions</x-th>
                              
-                                <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <x-td>
                                     <button onclick="openEditUserModal('{{ $user->id }}')">
                                         Manage
                                     </button>
-                                </td>
+                                </x-td>
                             </tr>
                             <!-- Spacer Row -->
                             <tr role="none">
-                                <td colspan="2">&nbsp;</td>
+                                <x-td colspan="2">&nbsp;</x-td>
                             </tr>
                         </tbody>
                         @endforeach
