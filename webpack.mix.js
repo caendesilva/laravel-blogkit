@@ -17,4 +17,7 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('autoprefixer'),
 ]);
 
-mix.browserSync('localhost:8000');
+mix.browserSync({
+    proxy: 'localhost:8000',
+    open: false,
+});
