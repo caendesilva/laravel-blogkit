@@ -55,7 +55,7 @@ class CreateNewPostForm extends Component
     private function getUniqueSlug(string $title): string {
         $slug = Str::slug($title);
         return Post::where('slug', $slug)->count()
-            ? $slug . "-" . $this->post->id
+            ? $slug . "-" . Post::max('id') + 1 // Append the largest ID of posts + one.
             : $slug;
     }
 
