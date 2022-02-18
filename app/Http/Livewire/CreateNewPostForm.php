@@ -19,6 +19,13 @@ class CreateNewPostForm extends Component
      */
     public \App\Models\Post $post;
 
+    /**
+     * @var string|bool $draft_id to save the editor contents as.
+     */
+    public string|bool $draft_id = false;
+
+    protected $queryString = ['draft_id'];
+
     protected $rules = [
         'post.title' => 'required|string|max:255',
         'post.description' => 'nullable|string|max:255',
@@ -29,6 +36,10 @@ class CreateNewPostForm extends Component
     public function mount()
     {
         $this->post = new Post;
+        
+        if (!$this->draft_id) {
+            $this->draft_id = time();
+        };
     }
 
     public function save()
