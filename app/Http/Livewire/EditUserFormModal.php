@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Livewire;
+
+use App\Models\User;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
+class EditUserFormModal extends Component
+{
+    use AuthorizesRequests;
+    
+    /**
+     * @var bool $show the modal?
+     */
+    public bool $show = false;
+
+    /**
+     * The user instance.
+     * 
+     * @var \App\Models\User
+     */
+    public User $user;
+
+    /**
+     * The validation rules.
+     * 
+     * @var array $rules
+     */
+    protected $rules = [
+        'user.is_admin' => 'nullable|boolean',
+        'user.is_author' => 'nullable|boolean',
+    ];
+
+    /**
+     * Listen to calls to trigger the modal opening and close.
+     * 
+     * @var array $listeners
+     */
+    protected $listeners = [
+        'openEditUserModal',
+        'closeModals' => 'closeModal',
+        'deleteUser',
+    ];
+
+    /**
+     * Set the user we are editing and open the modal.
+     * Livewire automatically returns a 404 not found error if the user does not exist.
+     * 
+     * @param User $user
+     * @return void
+     */
+    public function openEditUserModal(User $user)
+    {
+        // Abort if the user is not an admin.
+        abort_unless(Auth::user()->is_admin, 403);
+
+        // Set the user model
+        $this->user = $user;
+
+        // Set the show attribute to true, which makes the modal visible in the frontend.
+        $this->show = true;
+    }
+
+    /**
+     * Set the show attribute to false, removes the modal from the frontend.
+     * 
+     * @return void
+     */
+    public function closeModal()
+    {
+        // Unset the user
+        unset($this->user);
+
+        // Hide the modal
+        $this->show = false;
+
+        // Tell the event listener in the component that the modal was closed, so we can unlock the body.
+        $this->emit('modalClosed');
+    }
+
+    /**
+     * Save the user.
+     * 
+     * @return void
+     */
+    public function save()
+    {
+        // Authorize the request
+        $this->authorize('update', $this->user);
+
+        // Save the user model.
+        $this->user->save();
+
+        // Redirect back to dashboard with a message to the frontend that the user was saved.
+        return redirect()->to('/dashboard')->with('success', 'Successfully Updated User!');
+    }
+
+    /**
+     * Delete the user.
+     * 
+     * @return void
+     */
+    public function deleteUser()
+    {
+        // Authorize the request
+        $this->authorize('delete', $this->user);
+
+        // Delete the user model.
+        $this->user->delete();
+
+        // Redirect back to dashboard with a message to the frontend that the user was saved.
+        return redirect()->to('/dashboard')->with('success', 'Successfully Deleted User!');
+    }
+
+    public function render()
+    {
+        return view('livewire.edit-user-form-modal');
+    }
+}

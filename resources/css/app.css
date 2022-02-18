@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+[x-cloak] {
+	display: none;
+}
+
 .featured-post-image {
 	display: block;
 	height: 240px;
@@ -24,4 +28,14 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+/* Class to disable scrolling on the body when a modal is active */
+body.disable-scroll {
+	height: 100vh;
+	overflow: hidden;
+}
+/* And hide the theme toggle button to prevent flickering */
+body.disable-scroll #theme-toggle {
+	display: none;
 }

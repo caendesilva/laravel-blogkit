@@ -7,15 +7,15 @@
                 </div>
             </div>
 
-            @if (session('success'))
+            @if(session('success'))
             <div class="bg-green-300 overflow-hidden shadow-sm sm:rounded-lg mb-5">
                 <div class="py-3 px-4 text-green-900">
                     {{ session('success') }}
                 </div>
             </div>
             @endif
-
-            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5">
+            @if($posts)
+            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5 overflow-y-auto" style="max-height: 75vh;">
                 <div class="p-6 bg-white dark:bg-gray-800">
                     <header class="flex flex-row justify-between items-center">
                         <h3 class="text-xl font-bold mb-5">Manage Posts</h3>
@@ -129,12 +129,81 @@
                     @endif
                 </div>
             </section>
+            @endif
 
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-5">
-                <div class="p-6 bg-white dark:bg-gray-800">
-                   <h3 class="text-xl font-bold mb-3">Manage Users</h3> 
-                </div>
-            </div>
+            @if($users)
+            <section class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-5 overflow-y-auto" style="max-height: 75vh;
+                <header class="bg-white dark:bg-gray-800">
+                   <h3 class="text-xl font-bold mb-5">Manage Users</h3> 
+                </header>
+
+                <table class="w-full table-auto border-collapse border border-slate-500">
+                    <thead>
+                        <tr>
+                            <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">ID</th>
+                            <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Name</th>
+                            <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Email</th>
+                            <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Role</th>
+                            <th class="bg-gray-100 dark:bg-gray-900 border border-slate-600 p-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray:700 dark:text-gray-300">
+                        @foreach ($users as $user)
+                        <tr>
+                            <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <small class="opacity-75">#</small>{{ $user->id }}
+                                </a>
+                            </td>
+                            <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
+                                    {{ $user->name }}
+                                </a>
+                            </td>
+                            <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                {{ $user->email }}
+                                @if($user->email_verified_at)
+                                    <span title="Email Verified">
+                                        <!-- Icon by Google Material Icons (License: MIT) -->
+                                        <svg class="fill-green-400 inline" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <div class="flex flex-row flex-wrap">
+                                    @if($user->is_admin)
+                                    <span class="rounded-lg bg-orange-400 text-orange-900 px-2 py-1 text-xs uppercase font-bold m-1">Admin</span>                                    
+                                    @endif
+                                    @if($user->is_author)
+                                    <span class="rounded-lg bg-blue-400 text-blue-900 px-2 py-1 text-xs uppercase font-bold m-1">Author</span>                                    
+                                    @endif
+                                </div>
+                            </td>
+                            <td class="dark:bg-slate-800 border border-slate-600 p-3 lg:py-2">
+                                <button onclick="openEditUserModal('{{ $user->id }}')">
+                                    Manage
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </section>
+            @push('scripts')
+                <livewire:edit-user-form-modal />
+
+                <script>
+                    /**
+                     * Open the Livewire Edit User Modal
+                     * 
+                     * @param integer (user) id
+                     */
+                    function openEditUserModal(id) {
+                        Livewire.emit('openEditUserModal', id)
+                    }
+                </script>
+            @endpush
+            @endif
         </div>
     </div>
 </x-app-layout>

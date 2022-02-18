@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,9 +23,11 @@ class DashboardController extends Controller
             abort(403);
         }
         
-        // If the user is an admin they can manage all posts
+        // If the user is an admin they can manage all posts and users
         if ($request->user()->is_admin) {
             $posts = Post::all();
+
+            $users = User::all();
         }
 
         // Otherwise if the user is an author we show their posts
@@ -35,6 +38,7 @@ class DashboardController extends Controller
         // Return the view with the data we prepared
         return view('dashboard', [
             'posts' => $posts ?? false,
+            'users' => $users ?? false,
         ]);
     }
 }
