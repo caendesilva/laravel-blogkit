@@ -20,9 +20,7 @@
                     <header class="flex flex-row justify-between items-center">
                         <h3 class="text-xl font-bold mb-5">Manage Posts</h3>
                         @can('create', App\Models\Post::class)
-                        <x-button class="mb-5">
-                            <a href="{{ route('post.create') }}">New Post</a>
-                        </x-button>
+                        <a href="{{ route('post.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-black uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-gray-300 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 mb-5">New Post</a>
                         @endcan
                     </header>
 
