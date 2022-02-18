@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -19,6 +20,19 @@ class PostController extends Controller
     public function index()
     {
         return redirect('/', 301);
+    }
+
+    /**
+     * Show all the posts by the specified author.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function authorIndex(User $user)
+    {
+        return view('post.author-index', [
+            'user' => $user,
+            'posts' => $user->posts,
+        ]);
     }
 
     /**
