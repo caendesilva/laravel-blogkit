@@ -36,24 +36,38 @@
                                 @error('user.is_author') <span class="text-red-500">{{ $message }}</span> @enderror
                             </div>
                         </fieldset>
+                    </form>
                 
-                        <fieldset class="mt-3">
-                            <legend class="text-lg font-bold dark:text-white mb-3">Danger Zone:</legend>
-
-                            <button type="button" onClick="deleteUser()" class="text-red-700 dark:text-red-500 font-medium">
+                    <fieldset class="mt-3">
+                        <legend class="text-lg font-bold dark:text-white mb-3">Danger Zone:</legend>
+                        @if(config('blog.bans'))
+                        <div class="mb-2">
+                            @if($user->is_banned)
+                            <button type="button" wire:click="unbanUser" class="text-orange-700 dark:text-orange-500 font-medium disabled:opacity-75" wire:loading.attr="disabled">
+                                Unban User
+                            </button>
+                            @else
+                            <button type="button" wire:click="banUser" class="text-red-700 dark:text-red-500 font-medium disabled:opacity-75" wire:loading.attr="disabled">
+                                Ban User
+                            </button>
+                            @endif
+                        </div>
+                        @endif
+                        <form wire:submit.prevent="deleteUser">
+                            <button onclick="return confirmUserDelete()" type="submit" class="text-red-700 dark:text-red-500 font-medium disabled:opacity-75" wire:loading.attr="disabled">
                                 Delete User
                             </button>
-                        </fieldset>
+                        </form>
+                    </fieldset>
 
-                        <div class="flex items-center justify-end mt-4">
-                            <x-button-secondary type="button" wire:click="closeModal" data-modal-toggle="editUserModal" class="m-2">
-                                Cancel
-                            </x-button-secondary>
-                            <x-button type="submit" class="m-2">
-                                Save
-                            </x-button>
-                        </div>
-                    </form>
+                    <div class="flex items-center justify-end mt-4">
+                        <x-button-secondary type="button" wire:click="closeModal" data-modal-toggle="editUserModal" class="m-2">
+                            Cancel
+                        </x-button-secondary>
+                        <x-button wire:click="save()" class="m-2">
+                            Save
+                        </x-button>
+                    </div>
                 </div>
                 
             </div>
@@ -83,15 +97,18 @@
             document.body.classList.remove('disable-scroll');
             document.body.style.width = 'auto';
         })
+    </script>
 
-        // Confirm if the user wants to delete a user, and trigger Livewire action if confirmed.
-        function deleteUser() { 
-            if (prompt('Are you sure you want to delete this user? It cannot be undone! Type "delete" to confirm.').toLowerCase() == 'delete') {
-                window.livewire.emit('deleteUser')
+    <script>
+        function confirmUserDelete() {
+            if (prompt('Are you sure you want to delete this user? It cannot be undone! Type "delete" to confirm.') == 'delete') {
+                return true;
             } else {
-                alert('Canceled.');
+		        alert('Canceled.');
+                return false;
             }
-         }
+            return false;
+        }
     </script>
     @endpush
 </div>

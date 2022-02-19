@@ -46,6 +46,8 @@ class UserPolicy
 
     /**
      * Determine whether the user can update the model.
+     * 
+     * Remember that this permission allows the user to create and remove admins!
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
@@ -75,6 +77,26 @@ class UserPolicy
 
         if ($model->posts()->count()) {
             return Response::deny('You cannot delete a user that has posts. You must remove them first.');
+        }
+
+        return true;
+    }
+
+    /**
+     * Determine whether the user can ban/unban the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function ban(User $user, User $model)
+    {
+        if (!$user->is_admin) {
+            return Response::deny('You are not an admin.');
+        }
+
+        if ($model->is_admin) {
+            return Response::deny('You cannot ban an admin user. You must remove the permission first.');
         }
 
         return true;

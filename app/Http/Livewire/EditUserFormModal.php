@@ -41,7 +41,6 @@ class EditUserFormModal extends Component
     protected $listeners = [
         'openEditUserModal',
         'closeModals' => 'closeModal',
-        'deleteUser',
     ];
 
     /**
@@ -116,6 +115,47 @@ class EditUserFormModal extends Component
 
         // Redirect back to dashboard with a message to the frontend that the user was saved.
         return redirect()->to('/dashboard')->with('success', 'Successfully Deleted User!');
+    }
+
+    /**
+     * Ban the user.
+     * 
+     * @return void
+     */
+    public function banUser()
+    {
+        abort_unless(config('blog.bans'), 403, 'Banning users is not enabled.');
+
+        abort_if(config('blog.demoMode'), 403, 'Cannot do this action in demo mode.');
+
+        // Authorize the request
+        $this->authorize('ban', $this->user);
+
+        // Ban the user.
+        $this->user->is_banned = true;
+        $this->user->save();
+        
+        // Redirect back to dashboard with a message to the frontend that the user was banned.
+        return redirect()->to('/dashboard')->with('success', 'Successfully Banned User!');
+    }
+
+    
+    /**
+     * Unban the user.
+     * 
+     * @return void
+     */
+    public function unbanUser()
+    {
+        // Authorize the request
+        $this->authorize('ban', $this->user);
+
+        // Unban the user.
+        $this->user->is_banned = false;
+        $this->user->save();
+
+        // Redirect back to dashboard with a message to the frontend that the user was banned.
+        return redirect()->to('/dashboard')->with('success', 'Successfully unbanned User!');
     }
 
     public function render()

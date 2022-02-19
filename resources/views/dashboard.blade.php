@@ -183,6 +183,9 @@
                                         @if($user->is_author)
                                         <span class="rounded-lg bg-blue-400 text-blue-900 px-2 py-1 text-xs uppercase font-bold m-1">Author</span>                                    
                                         @endif
+                                        @if($user->is_banned)
+                                        <span class="rounded-lg bg-red-400 text-red-900 px-2 py-1 text-xs uppercase font-bold m-1">Banned</span>                                    
+                                        @endif
                                     </div>
                                 </x-td>
                                 <x-td class="text-center">
@@ -233,6 +236,9 @@
                                         @endif
                                         @if($user->is_author)
                                         <span class="rounded-lg bg-blue-400 text-blue-900 px-2 py-1 text-xs uppercase font-bold m-1">Author</span>                                    
+                                        @endif
+                                        @if($user->is_banned)
+                                        <span class="rounded-lg bg-red-400 text-red-900 px-2 py-1 text-xs uppercase font-bold m-1">Banned</span>                                    
                                         @endif
                                     </div>
                                 </x-td>
