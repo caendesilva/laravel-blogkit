@@ -22,6 +22,9 @@
 									<h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
 								</th>
 								<td class="text-right whitespace-nowrap align-top pt-2 pl-5 hidden sm:block">
+									@can('update', $post)
+									<a href="{{ route('posts.edit', $post) }}" class="my-2 mr-2 opacity-75 hover:opacity-100 transition-opacity">Edit Post</a>
+									@endcan
 									<a href="/" class="my-2 opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
 								</td>
 							</tr>
@@ -107,6 +110,9 @@
 			</article>
 
 			<div class="text-center dark:text-white mt-8 sm:hidden">
+				@can('update', $post)
+				<a href="{{ route('posts.edit', $post) }}" class="my-2 mr-2 opacity-75 hover:opacity-100 transition-opacity">Edit Post</a>
+				@endcan
 				<a href="/" class="opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
 			</div>
 
