@@ -31,9 +31,9 @@
 						<span class="opacity-75">Posted by</span>
 						<x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
 						<span class="opacity-75">
-							<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:sa') }}</time>.
+							<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:ia') }}</time>.
 							@if($post->created_at !== $post->updated_at)
-							Updated <time datetime="{{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:sa') }}</time>.
+							Updated <time datetime="{{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
 							@endif
 						</span>
 					</div>
