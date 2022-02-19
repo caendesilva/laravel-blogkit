@@ -62,8 +62,11 @@ class DemoSeeder extends Seeder
             }
         }
 
+        \App\Models\User::factory(8)->create();
+
         $this->call([
-            PostSeeder::class
+            PostSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }

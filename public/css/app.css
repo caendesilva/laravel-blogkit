@@ -927,6 +927,17 @@ select {
 .prose > :where(:last-child):not(:where([class~="not-prose"] *)) {
   margin-bottom: 0;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .invisible {
   visibility: hidden;
 }
@@ -968,6 +979,9 @@ select {
 }
 .z-10 {
   z-index: 10;
+}
+.float-right {
+  float: right;
 }
 .m-1 {
   margin: 0.25rem;
@@ -1429,6 +1443,12 @@ select {
 }
 .fill-current {
   fill: currentColor;
+}
+.fill-gray-700 {
+  fill: #374151;
+}
+.fill-gray-500 {
+  fill: #6b7280;
 }
 .p-6 {
   padding: 1.5rem;

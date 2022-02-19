@@ -18,8 +18,6 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-  
-
         $title = $this->faker->sentence();
 
         return [
@@ -45,7 +43,6 @@ class PostFactory extends Factory
         return $faker->markdown();
     }
 
-    
     /**
      * Generate a seed and use picsum.photos to get a random image.
      * @see https://picsum.photos/
