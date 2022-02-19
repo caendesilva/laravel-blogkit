@@ -32,7 +32,7 @@ return [
 		'enabled' => true, // Default: true
 
 		// Customize the editor toolbar buttons
-		'toolbar' => 'developer', // Default: null (use default toolbar)
+		'toolbar' => null, // Default: null (use default toolbar)
 
 		// The toolbars available - note that the toolbar icons added are in addition to the default ones
 		'toolbars' => [
