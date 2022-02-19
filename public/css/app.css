@@ -2176,6 +2176,10 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
     display: flex;
   }
 
+  .sm\:table-cell {
+    display: table-cell;
+  }
+
   .sm\:hidden {
     display: none;
   }

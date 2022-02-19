@@ -26,7 +26,7 @@
             
                     <div class="mt-3">
                         <x-label for="body" :value="__('Body*')" />
-                        <x-textarea id="body" name="body" :value="old('body')" class="block mt-1 w-full" placeholder="Main content of the post" rows="8"></x-textarea>
+                        <x-textarea id="body" name="body" class="block mt-1 w-full" placeholder="Main content of the post" rows="8">{{ old('body') }}</x-textarea>
                         @error('body') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>        
             

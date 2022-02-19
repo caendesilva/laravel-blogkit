@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
-use GrahamCampbell\Markdown\Facades\Markdown;
-use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class PostController extends Controller
 {
@@ -55,7 +56,7 @@ class PostController extends Controller
             };
     
             return view('post.create', [
-                'draft_id' => $request->get('draft_id')
+                'draft_id' => $request->get('draft_id'),
             ]);
         }
 
@@ -70,7 +71,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        // The incoming request is valid...
+        // The incoming request is valid and authorized...
     
         // Retrieve the validated input data...
         $validated = $request->validated();
@@ -108,16 +109,49 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, Post $post)
     {
         $this->authorize('update', $post);
         
-        return view('post.edit', [
-            'post' => $post
-        ]);
+        if (config('blog.easyMDE.enabled')) {
+            if (!$request->has('draft_id')) {
+                return redirect(route('posts.edit', [
+                    'post' => $post,
+                    'draft_id' => time(),
+                ]));
+            };
+    
+            return view('post.edit', [
+                'post' => $post,
+                'draft_id' => $request->get('draft_id'),
+            ]);
+        }
+
+        return view('post.edit', ['post' => $post]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdatePostRequest  $request
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdatePostRequest $request, Post $post)
+    {
+        // The incoming request is valid and authorized...
+    
+        // Retrieve the validated input data...
+        $validated = $request->validated();
+
+        // Update the post
+        $post->update($validated);
+
+        return redirect()->route('posts.show', ['post' => $post]);
     }
 
     /**
