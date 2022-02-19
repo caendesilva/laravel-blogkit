@@ -6,7 +6,7 @@
     </header>
     <div class="p-5 h-full flex flex-col">
         <a href="{{ route('posts.show', $post) }}">
-            <h3 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h3 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white break-words">
                 {{ $post->title }}
             </h3>
         </a>
