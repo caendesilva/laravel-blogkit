@@ -39,6 +39,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            @include('layouts.footer')
         </div>
 
         <livewire:scripts />
