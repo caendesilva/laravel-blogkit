@@ -267,8 +267,7 @@
                 
                 @if(!$comments->count())
                     There are no comments here.
-                @endif
-                
+                @else
                 <!-- Desktop Version -->
                 <div class="hidden sm:block overflow-y-auto" style="max-height: 75vh;">
                     <table class="w-full table-auto border-collapse border border-slate-500">
@@ -374,6 +373,7 @@
                         @endforeach
                     </table>
                 </div>
+                @endif
             </section>
             @endif
 
