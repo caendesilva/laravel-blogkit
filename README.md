@@ -8,6 +8,14 @@
 
 ## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 9, TailwindCSS, AlpineJS, and Livewire!
 
+## Features
+* **Highly Customizable:** Turn features on and off in the config
+*  **Security Focused CMS:** A CMS for Posts, Users, and Comments with strong and customizable security policies is included out of the box. You can easily update user's permissions as well.
+*  **Dark Mode & Mobile Friendly:** A must for the modern app: Dark mode. And of course, all parts of the site are mobile friendly, including the tables in the CMS.
+*  **Smart Markdown Editor:** Posts are made using Markdown. To aid in this, the EasyMDE editor is included by default which allows for rich text editing with autosave and markdown previews.
+*  **Users & Comments:** Users can create accounts and leave comments. If you want them too. You can even require users to verify their emails to comment.
+*  **Semantic and data-rich SEO-minded HTML:** The frontend adheres to follow the practices of Semantic HTML. Blog articles are automatically injected with Open Graph meta tags for better SEO. 
+
 ## Get Started
 Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
 
