@@ -69,6 +69,14 @@
                     </x-dropdown>
                 </div>
                 @endauth
+
+                @can('create', \App\Models\Post::class)
+                <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                    <x-button>
+                        {{ __('New Post') }}
+                    </x-button>
+                </x-nav-link>
+                @endcan
             </div>
 
             <button title="Toggle Dark Mode" id="theme-toggle" type="button" class="ml-auto text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 block sm:fixed bottom-4 right-4 z-10">
@@ -128,5 +136,15 @@
             </div>
         </div>
         @endauth
+
+        @can('create', \App\Models\Post::class)
+        <div class="py-3 border-t border-gray-200">
+                <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                <x-button>
+                    {{ __('New Post') }}
+                </x-button>
+            </x-responsive-nav-link>
+        </div>
+        @endcan
     </div>
 </nav>
