@@ -28,7 +28,7 @@ Once you have installed the Laravel app you can use the helper command to create
 
 ### How to set up the blog for production
 1. Clone the git repo
-2. In your terminal, run `php artisan migrate`
+2. In your terminal, run `php artisan migrate` (Note, if you have previously set up your app using demo data, use `migrate:fresh` to clear demo users instead!)
 3. In your terminal, run `php artisan admin:create` and follow the on-screen instructions to create an admin account. Make sure to set a strong password or passphrase!
 4. Next, follow the instructions in the [Official Deployment Documentation](https://laravel.com/docs/9.x/deployment) to ensure you are following the best practices.
 

@@ -49,6 +49,18 @@ class DemoSeeder extends Seeder
                 'password' => Hash::make('password'),
             ]);
         }
+        
+        if (config('blog.bans')) {
+            if (!User::where('email', 'banned@example.org')->count()) {
+                User::create([
+                    'name' => 'Banned',
+                    'email' => 'banned@example.org',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('password'),
+                    'is_banned' => true,
+                ]);
+            }
+        }
 
         $this->call([
             PostSeeder::class

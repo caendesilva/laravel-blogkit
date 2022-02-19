@@ -20,6 +20,9 @@ return [
 	// Should the Readme file be available as a '/readme route?
 	'readme' => false, // Default: false
 
+	// Enable ban feature?
+	'bans' => true, // Default: true
+
 	/**
 	 * EasyMDE Text Editor
 	 * 

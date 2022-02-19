@@ -29,13 +29,16 @@
                         <strong>Guest:</strong>
                         guest@example.org
                     </li>
+                    @if(config('blog.bans'))
+                    <li>
+                        <strong>Banned:</strong>
+                        banned@example.org
+                    </li>
+                    @endif
                 </ul>
 
                 All accounts have the password "password"
             </div>
-            <ul>
-    
-            </ul>
         </blockquote>
         @endif
 
