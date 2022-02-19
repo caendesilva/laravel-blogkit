@@ -4,8 +4,8 @@
     </x-slot>
 
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
-        <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-16">
-            <h1 class="text-3xl font-bold dark:text-white my-3">New Blog Post</h1>
+        <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-8 sm:my-16">
+            <h1 class="text-3xl font-bold dark:text-white mb-8 sm:my-3 text-center sm:text-left">New Blog Post</h1>
             <section class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
 				<form action="{{ route('posts.store') }}" method="POST" class="text-gray-900">
                     @csrf

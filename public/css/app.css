@@ -1042,6 +1042,10 @@ select {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1116,6 +1120,9 @@ select {
 }
 .-mr-2 {
   margin-right: -0.5rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
 }
 .block {
   display: block;
@@ -2241,6 +2248,16 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
     margin-bottom: -1px;
   }
 
+  .sm\:my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .sm\:my-3 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .sm\:ml-10 {
     margin-left: 2.5rem;
   }
@@ -2304,6 +2321,10 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
 
   .sm\:pt-0 {
     padding-top: 0px;
+  }
+
+  .sm\:text-left {
+    text-align: left;
   }
 }
 @media (min-width: 768px) {
