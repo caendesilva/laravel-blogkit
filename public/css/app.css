@@ -1538,9 +1538,6 @@ select {
 .pt-1 {
   padding-top: 0.25rem;
 }
-.pt-3 {
-  padding-top: 0.75rem;
-}
 .text-left {
   text-align: left;
 }
@@ -1858,6 +1855,11 @@ pre code.torchlight .line {
 */
 pre code.torchlight .line-number, pre code.torchlight .summary-caret {
   margin-right: 1rem;
+}
+/* Markdown Editor Styles */
+.editor-toolbar {
+	background-color: #fff;
+	opacity: 0.9;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

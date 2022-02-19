@@ -6,6 +6,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use App\Http\Requests\StorePostRequest;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -40,13 +42,41 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $this->authorize('create', App\Models\Post::class);
 
+        if (config('blog.easyMDE.enabled')) {
+            if (!$request->has('draft_id')) {
+                return redirect(route('posts.create', ['draft_id' => time()]));
+            };
+    
+            return view('post.create', [
+                'draft_id' => $request->get('draft_id')
+            ]);
+        }
+
         return view('post.create');
+    }
+
+    /**
+     * Store a new blog post.
+     *
+     * @param  \App\Http\Requests\StorePostRequest  $request
+     * @return Illuminate\Http\Response
+     */
+    public function store(StorePostRequest $request)
+    {
+        // The incoming request is valid...
+    
+        // Retrieve the validated input data...
+        $validated = $request->validated();
+
+        // Create the post
+        return (new CreatesNewPost)->store($request->user(), $validated);
     }
 
     /**
