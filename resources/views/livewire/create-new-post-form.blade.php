@@ -25,8 +25,8 @@
         </div>        
 
         @push('scripts')
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
         <style>
             .editor-toolbar {
                 background-color: #fff;
@@ -35,16 +35,20 @@
         </style>
         <script>
             // Initiate the editor
-            var simplemde = new SimpleMDE({
+            var easyMDE = new EasyMDE({
                 autosave: {
                     enabled: true,
                     uniqueId: 'draft-' + '{{ $draft_id }}',
                 },
                 forceSync: true,
+                {!! config('blog.easyMDE.toolbar')
+                    ? "showIcons: ". json_encode(config('blog.easyMDE.toolbars')[config('blog.easyMDE.toolbar')])
+                    : null
+                !!}
             });
 
             // Fixes bug where livewire does not recognize the input of the texteditor
-            simplemde.codemirror.on("change", function(){
+            easyMDE.codemirror.on("change", function(){
                 var contentarea = document.getElementById("content");
                 contentarea.dispatchEvent(new Event('input'));
             });

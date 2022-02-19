@@ -17,6 +17,39 @@ return [
 	// Should the site be in demo mode? (Do NOT use in production)
 	'demoMode' => false, // Default: false
 
+	/**
+	 * EasyMDE Text Editor
+	 * 
+	 * This is the default text editor used when creating and updating posts.
+	 * 
+	 * If you disable this, a normal HTML textarea will be used instead. It will still output markdown, but without the fancy editing and preview.
+	 * 
+	 * @see https://github.com/Ionaru/easy-markdown-editor
+	 */
+
+	'easyMDE' => [
+		// Should EasyMDE be enabled?
+		'enabled' => true, // Default: true
+
+		// Customize the editor toolbar buttons
+		'toolbar' => 'developer', // Default: null (use default toolbar)
+
+		// The toolbars available - note that the toolbar icons added are in addition to the default ones
+		'toolbars' => [
+			// The full suite
+			'extended' => [
+				'strikethrough', 'code', 'table', 'redo', 'heading', 'undo', 'heading-bigger', 'heading-smaller', 'heading-1', 'heading-2', 'heading-3', 'clean-block', 'horizontal-rule'
+			],
+			// Perfect for the developer
+			'developer' => [
+				'code'
+			],
+			'custom' => [
+				// Write your own
+			]
+		]
+	],
+
 	/*
 	 * Torchlight Syntax Highlight
 	 * 
