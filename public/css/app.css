@@ -1565,6 +1565,9 @@ select {
 .pt-1 {
   padding-top: 0.25rem;
 }
+.pb-0 {
+  padding-bottom: 0px;
+}
 .text-left {
   text-align: left;
 }

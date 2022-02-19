@@ -52,6 +52,8 @@
 					<div class="mt-5">
 						<i>Syntax highlighting provided by <x-link href="https://torchlight.dev/" rel="noopener nofollow">torchlight.dev</x-link></i>
 					</div>
+					@else
+					<div style="height: 1px;" role="separator"></div>
 					@endif
 				</div>
 
@@ -92,7 +94,7 @@
 						</ul>
 					@endif
 					@can('create', App\Models\Comment::class)
-						<div class="mt-3">
+						<div class="mt-5">
 							<livewire:create-new-comment-form :post="$post">
 						</div>
 					@elseif(Gate::inspect('create', App\Models\Comment::class)->message() == "Your email must be verified to comment.")
