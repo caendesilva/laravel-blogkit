@@ -21,6 +21,8 @@
 		'user' => 'caendesilva',
 		'repo' => 'laravel-blogkit',
 	],
+
+	'showVersion' => true,
 ])
 
 <footer class="w-full p-5 pt-6 bg-gray-500 bg-opacity-10 text-gray-700 dark:text-gray-300 text-center">
@@ -36,9 +38,11 @@
 		</small>
 	</div>
 	@endif
-	@if($showLicense)
+	
+	@if($showLicense || $showVersion)
 	<div class="mx-3">
-		<small class="text-sm">
+		@if($showLicense)
+		<small class="text-sm mx-1">
 			@if($appLicense === $contentLicense)
 			License: <x-link :href="$appLicense['link']" rel="license noopener noreferrer nofollow" class="dark:opacity-90 hover:opacity-100">{{ $appLicense['name'] }}</x-link>
 			@else
@@ -47,8 +51,16 @@
 			Content License: <x-link :href="$contentLicense['link']" rel="license noopener noreferrer nofollow" class="dark:opacity-90 hover:opacity-100">{{ $contentLicense['name'] }}</x-link>
 			@endif
 		</small>
+		@endif
+		@if($showVersion)
+		<small class="text-sm mx-1">
+			App Version:
+			v{{ \App\Providers\BlogServiceProvider::BLOGKIT_VERSION }}
+		</small>
+		@endif
 	</div>
 	@endif
+
 	@if($showCredit)
 	<p class="mt-3">
 		This site was built using the free and open source
@@ -68,4 +80,6 @@
 		<span class="my-3 mx-2 github-btn github-me"><a class="gh-btn" href="https://github.com/{{ $github['user'] }}" rel="noopener author" target="_blank" aria-label="Follow (at){{ $github['user'] }} on GitHub"><span class="gh-ico" aria-hidden="true"></span> <span class="gh-text">Follow &commat;{{ $github['user'] }}</span> </a></span>
 	</div>
 	@endif
+
+	
 </footer>
