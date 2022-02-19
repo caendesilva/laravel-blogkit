@@ -43,12 +43,17 @@
 					</figure>
 				</header>
 				
-				<div class="prose dark:prose-invert">
-					{!! Str::markdown($post->body) !!}
+				<div @class([ 'prose dark:prose-invert', 'torchlight' => $torchlightUsed])>
+					{!! $markdown !!}
+					@if($torchlightUsed)
+					<div class="mt-5">
+						<i>Syntax highlighting provided by <x-link href="https://torchlight.dev/" rel="noopener nofollow">torchlight.dev</x-link></i>
+					</div>
+					@endif
 				</div>
 
 				@if(config('blog.allowComments'))
-				<footer class="border-t-2 dark:border-gray-600 mt-8 pt-5 pb-2">
+				<footer class="border-t-2 dark:border-gray-600 mt-5 pt-5 pb-2">
 					<h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h2>
 					@if($post->comments)
 						<ul>

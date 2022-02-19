@@ -1245,9 +1245,6 @@ select {
 .items-start {
   align-items: flex-start;
 }
-.items-end {
-  align-items: flex-end;
-}
 .items-center {
   align-items: center;
 }
@@ -1523,6 +1520,9 @@ select {
 .pt-5 {
   padding-top: 1.25rem;
 }
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
 .pl-2 {
   padding-left: 0.5rem;
 }
@@ -1538,8 +1538,8 @@ select {
 .pt-1 {
   padding-top: 0.25rem;
 }
-.pb-2 {
-  padding-bottom: 0.5rem;
+.pt-3 {
+  padding-top: 0.75rem;
 }
 .text-left {
   text-align: left;
@@ -1765,13 +1765,6 @@ select {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
-.transition-colors {
-  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
 .duration-150 {
   transition-duration: 150ms;
 }
@@ -1780,9 +1773,6 @@ select {
 }
 .duration-75 {
   transition-duration: 75ms;
-}
-.duration-300 {
-  transition-duration: 300ms;
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1825,6 +1815,49 @@ body.disable-scroll {
 /* And hide the theme toggle button to prevent flickering */
 body.disable-scroll #theme-toggle {
 	display: none;
+}
+/* Torchlight Extension Styles for TailwindCSS */
+/*
+ Margin and rounding are personal preferences,
+ overflow-x-auto is recommended.
+*/
+pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  border-radius: 0.25rem;
+}
+/* Remove default padding */
+.torchlight pre {
+	padding: 0!important;
+}
+/*
+ Add some vertical padding and expand the width
+ to fill its container. The horizontal padding
+ comes at the line level so that background
+ colors extend edge to edge.
+*/
+pre code.torchlight {
+  display: block;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+/*
+ Horizontal line padding.
+*/
+pre code.torchlight .line {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+/*
+ Push the code away from the line numbers and
+ summary caret indicators.
+*/
+pre code.torchlight .line-number, pre code.torchlight .summary-caret {
+  margin-right: 1rem;
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;

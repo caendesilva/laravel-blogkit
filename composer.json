@@ -7,11 +7,14 @@
     "require": {
         "php": "^8.0.2",
         "fruitcake/laravel-cors": "^2.0.5",
+        "graham-campbell/markdown": "*",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "torchlight/torchlight-commonmark": "*",
+        "torchlight/torchlight-laravel": "^0.5.11"
     },
     "require-dev": {
         "davidbadura/faker-markdown-generator": "^1.1",
