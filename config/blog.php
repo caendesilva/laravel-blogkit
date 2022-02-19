@@ -17,6 +17,9 @@ return [
 	// Should the site be in demo mode? (Do NOT use in production)
 	'demoMode' => false, // Default: false
 
+	// Should the Readme file be available as a '/readme route?
+	'readme' => false, // Default: false
+
 	/**
 	 * EasyMDE Text Editor
 	 * 

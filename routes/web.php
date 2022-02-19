@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReadmeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -33,5 +34,9 @@ Route::resource('comments', CommentController::class)->only([
 Route::get('/author/{user}', [PostController::class, 'authorIndex'])->name('author');
 
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'can:access-dashboards'])->name('dashboard');
+
+if (config('blog.readme')) {
+    Route::get('/readme', ReadmeController::class);
+}
 
 require __DIR__.'/auth.php';
