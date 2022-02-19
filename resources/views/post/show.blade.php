@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="title">
+        {{ $post->title }}
+    </x-slot>
+
 	@push('meta')
 	<!-- Blog Post Meta Tags -->
 	<meta property="og:title" content="{{ $post->title }}">

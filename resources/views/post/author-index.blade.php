@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="title">
+        Author {{ $user->name }}
+    </x-slot>
+
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         <section class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if($posts->count())

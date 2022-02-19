@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Str;
 
@@ -31,6 +32,9 @@ class ReadmeController extends Controller
             && str_contains($markdown, '<!-- Syntax highlighted by torchlight.dev -->')
                 ? true
                 : false;
+
+        // Set the page title
+        View::share('title', 'Readme');
 
         return view('layouts.markdown', [
             'markdown' => $markdown,

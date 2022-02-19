@@ -8,7 +8,9 @@
         @stack('meta')
         <meta property="og:site_name" content="{{ config('app.name', 'Laravel') }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>
+            {{ (isset($title) ? $title . ' - ' : '') . config('app.name', 'Laravel') }}
+        </title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
