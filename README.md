@@ -54,6 +54,7 @@ Current todo list:
 - [ ] Add Artisan command to generate posts from frontmatter Markdown
 - [ ] Add theme color option
 - [ ] Image uploads
+- [ ] Write more tests
 
 ## Open Source Attributions
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:
