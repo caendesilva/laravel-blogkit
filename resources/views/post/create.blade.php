@@ -44,9 +44,11 @@
                             <x-input id="featured_image" name="featured_image" :value="old('featured_image')" type="text" class="block mt-1 w-full" maxlength="255" placeholder="https://example.org/static/image.jpg"/>
                             @error('featured_image') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
+
+                        @if(config('blog.withTags'))
+                        <livewire:tag-manager />
+                        @endif
                     </fieldset>
-            
-                  
             
                     <div class="flex items-center justify-end mt-4">
                         <x-button type="submit" class="ml-4">

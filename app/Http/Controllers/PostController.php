@@ -85,6 +85,11 @@ class PostController extends Controller
         // Retrieve the validated input data...
         $validated = $request->validated();
 
+        // Check if post has tags set, and serialize them to array
+        if (isset($validated['tags'])) {
+            $validated['tags'] = json_decode($validated['tags'], true);
+        }
+
         // Create the post
         return (new CreatesNewPost)->store($request->user(), $validated);
     }
