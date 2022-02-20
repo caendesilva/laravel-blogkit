@@ -1884,8 +1884,8 @@ pre {
   border-radius: 0.25rem;
 }
 /* Remove default padding */
-.torchlight pre {
-	padding: 0!important;
+pre.torchlight {
+  padding: 0px;
 }
 /*
  Add some vertical padding and expand the width

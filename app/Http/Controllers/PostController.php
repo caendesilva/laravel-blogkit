@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use GrahamCampbell\Markdown\Facades\Markdown;
+use App\Http\Controllers\MarkdownConverter;
 
 class PostController extends Controller
 {
@@ -88,18 +88,11 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // Generate formatted HTML from markdown
-        $markdown = Markdown::convertToHtml($post->body);
-
-        $torchlightUsed = config('blog.torchlight.enabled') === true // Check if Torchlight is enabled and if attribution is enabled. If it is not, we don't need to search the text.
-            && config('blog.torchlight.attribution') === true
-            && str_contains($markdown, '<!-- Syntax highlighted by torchlight.dev -->')
-                ? true
-                : false;
+        $markdown = (new MarkdownConverter($post->body))->toHtml();
 
         return view('post.show', [
             'post' => $post,
             'markdown' => $markdown,
-            'torchlightUsed' => $torchlightUsed ?? false,
         ]);
     }
 

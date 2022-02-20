@@ -50,15 +50,8 @@
 					</figure>
 				</header>
 				
-				<div @class([ 'prose dark:prose-invert', 'torchlight' => $torchlightUsed])>
+				<div class="prose dark:prose-invert pb-3">
 					{!! $markdown !!}
-					@if($torchlightUsed)
-					<div class="mt-5">
-						<i>Syntax highlighting provided by <x-link href="https://torchlight.dev/" rel="noopener nofollow">torchlight.dev</x-link></i>
-					</div>
-					@else
-					<div style="height: 1px;" role="separator"></div>
-					@endif
 				</div>
 
 				@if(config('blog.allowComments'))

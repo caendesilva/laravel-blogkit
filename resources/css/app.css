@@ -51,8 +51,8 @@ pre {
 }
 
 /* Remove default padding */
-.torchlight pre {
-	padding: 0!important;
+pre.torchlight {
+    @apply p-0;
 }
 
 /*
