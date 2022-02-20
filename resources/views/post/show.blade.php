@@ -41,7 +41,7 @@
 								<span class="opacity-75">
 									Posted by
 								</span>
-								<x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
+								<x-link :href="route('posts.index', ['author' => $post->author])" rel="author">{{ $post->author->name }}</x-link>
 							</li>
 							<li class="mx-1 opacity-75" name="published_time">
 								<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:ia') }}</time>.
@@ -79,7 +79,7 @@
 							@foreach ($post->comments as $comment)
 							<li id="comment-{{ $comment->id }}" class="rounded-lg bg-gray-200 dark:bg-gray-700 p-4 my-4 relative group">
 								<div>
-									<a href="{{ route('author', $comment->user) }}">
+									<a href="{{ route('posts.index', ['author' => $comment->user]) }}">
 										<small class="opacity-75">&commat;</small>{{ $comment->user->name }}:
 									</a>
 									@if($comment->created_at != $comment->updated_at)

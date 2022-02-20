@@ -48,7 +48,7 @@
                                 @foreach ($posts as $post)
                                 <tr>
                                     <x-td>
-                                        <a href="{{ route('author', ['user' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
+                                        <a href="{{ route('posts.index', ['author' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
                                             {{ $post->author->name }}
                                         </a>
                                     </x-td>
@@ -98,7 +98,7 @@
                                     <x-th>Author</x-th>
 
                                     <x-td>
-                                        <a href="{{ route('author', ['user' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
+                                        <a href="{{ route('posts.index', ['author' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
                                             {{ $post->author->name }}
                                         </a>
                                     </x-td>
@@ -161,12 +161,12 @@
                             @foreach ($users as $user)
                             <tr>
                                 <x-td>
-                                    <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.index', ['author' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $user->id }}
                                     </a>
                                 </x-td>
                                 <x-td>
-                                    <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.index', ['author' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         {{ $user->name }}
                                     </a>
                                 </x-td>
@@ -210,7 +210,7 @@
                             <tr>
                                 <x-th>User</x-th>
                                 <x-th class="lg:py-2 text-left">
-                                    <a href="{{ route('author', ['user' => $user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.index', ['author' => $user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $user->id }}
                                         {{ $user->name }}
                                     </a>
@@ -293,7 +293,7 @@
                             @foreach ($comments as $comment)
                             <tr>
                                 <x-td>
-                                    <a href="{{ route('author', ['user' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.index', ['author' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $comment->user->id }}
                                         {{ $comment->user->name }}
                                     </a>
@@ -337,7 +337,7 @@
                             <tr>
                                 <x-th>User</x-th>
                                 <x-td>
-                                    <a href="{{ route('author', ['user' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
+                                    <a href="{{ route('posts.index', ['author' => $comment->user]) }}" rel="author" class="hover:text-indigo-500">
                                         <small class="opacity-75">#</small>{{ $comment->user->id }}
                                         {{ $comment->user->name }}
                                     </a>

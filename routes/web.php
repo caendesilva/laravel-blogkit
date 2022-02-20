@@ -31,8 +31,6 @@ Route::resource('comments', CommentController::class)->only([
     'destroy',
 ]);
 
-Route::get('/author/{user}', [PostController::class, 'authorIndex'])->name('author');
-
 Route::get('/dashboard', [DashboardController::class, 'show'])->middleware(['auth', 'can:access-dashboards'])->name('dashboard');
 
 if (config('blog.readme')) {

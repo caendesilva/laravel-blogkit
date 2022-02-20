@@ -17,25 +17,35 @@ class PostController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the resource with support for filters.
+     * 
+     * Does not include pagination at the moment.
+     * 
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return redirect('/', 301);
-    }
+        if ($request->has('filterByTag')) {
+            return view('post.index', [
+                'title' => 'Posts with tag ' . $request->get('filterByTag'),
+                'filter' => 'Filtered by tag "' . $request->get('filterByTag') . '"',
+                'posts' => Post::whereJsonContains('tags', $request->get('filterByTag'))->get(),
+            ]);
+        }
 
-    /**
-     * Show all the posts by the specified author.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function authorIndex(User $user)
-    {
-        return view('post.author-index', [
-            'user' => $user,
-            'posts' => $user->posts,
+        if ($request->has('author')) {
+            $author = User::findOrFail($request->get('author'));
+    
+            return view('post.index', [
+                'title' => 'Posts by ' . $author->name,
+                'filter' => 'Filtered by author ' . $author->name,
+                'posts' => $author->posts,
+            ]);
+        }
+
+        return view('post.index', [
+            'posts' => Post::all(),
         ]);
     }
 
