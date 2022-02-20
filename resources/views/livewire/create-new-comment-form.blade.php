@@ -11,5 +11,5 @@
 
     <div>@error('content') <span class="text-red-500">{{ $message }}</span> @enderror</div>
 
-    <div class="text-sm opacity-75 mt-2">Please be civil and respectful when leaving a comment!</div>
+    <div class="text-sm opacity-75 mt-2">{{ __('Please be civil and respectful when leaving a comment!') }}</div>
 </div>
