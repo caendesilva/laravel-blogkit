@@ -53,7 +53,7 @@ class PostFactory extends Factory
      */
     private function getFeaturedImage()
     {
-        return "https://picsum.photos/seed/" . rand(0, 99) . "/960/320";
+        return "https://picsum.photos/seed/" . rand(0, 99) . "/960/640";
     }
 
     /**

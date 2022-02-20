@@ -41,7 +41,7 @@ Blog posts are a breeze to create using the Markdown editor!
 #### Good cover images
 Each post has a featured cover image that is dynamically cropped using CSS background properties so that it looks smooth in all widths.
 
-For best results, ensure that your cover images are 960 by 320 pixels as that is usually the max size. However, you should also remember that the images are cropped to a much narrower format in many places. Thus you need to make sure that all primary content such as text is contained within the center 360 by 320 pixels or so.
+For best results, ensure that your cover images are 960 by 640 pixels as that is usually the max size. However, you should also remember that the images are cropped to a much narrower format in many places. Thus you need to make sure that all primary content such as text is contained within the center 640 by 340 pixels.
 
 ## Contribute!
 PRs are very much welcome!
@@ -53,6 +53,7 @@ Current todo list:
 - [ ] Add Markdown caching (and clear post cache when updating post)
 - [ ] Add Artisan command to generate posts from frontmatter Markdown
 - [ ] Add theme color option
+- [ ] Image uploads
 
 ## Open Source Attributions
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:

@@ -15,12 +15,6 @@
 	background-repeat: no-repeat;
 }
 
-@media screen and (max-width: 375px) {
-	.featured-post-image {
-		height: 180px;
-	}
-}
-
 .post-header-image {
 	display: block;
 	height: 320px;
@@ -28,6 +22,15 @@
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 375px) {
+	.featured-post-image {
+		height: 180px;
+	}
+	.post-header-image {
+		max-height: 240px;
+	}
 }
 
 /* Class to disable scrolling on the body when a modal is active */
