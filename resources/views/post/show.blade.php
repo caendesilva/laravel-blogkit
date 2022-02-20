@@ -18,12 +18,12 @@
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-8 md:my-16">
             <article class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
-				<header class="mb-5">
+				<header role="doc-pageheader" class="mb-5">
 					<table class="w-full">
 						<thead>
 							<tr>
 								<th class="text-left">
-									<h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
+									<h1 class="text-3xl font-bold">{{ $post->title }}</h1>
 								</th>
 								<td class="text-right whitespace-nowrap align-top pt-2 pl-5 hidden sm:block">
 									@can('update', $post)
@@ -34,17 +34,34 @@
 							</tr>
 						</thead>
 					</table>
-					<div class="text-sm mb-3">
-						<span class="opacity-75">Posted by</span>
-						<x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
-						<span class="opacity-75">
-							<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:ia') }}</time>.
+					<p class="text-lg">{{ $post->description }}</p>
+					<div aria-label="About the post" role="doc-introduction">
+						<ul class="text-sm flex flex-row flex-wrap -mx-1 mt-1 mb-2">
+							<li class="mx-1" name="author">
+								<span class="opacity-75">
+									Posted by
+								</span>
+								<x-link :href="route('author', $post->author)" rel="author">{{ $post->author->name }}</x-link>
+							</li>
+							<li class="mx-1 opacity-75" name="published_time">
+								<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:ia') }}</time>.
+							</li>
 							@if($post->created_at !== $post->updated_at)
-							Updated <time datetime="{{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
+							<li class="mx-1 opacity-75" name="modified_time">
+								Updated
+								<time datetime="{{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
+							</li>
 							@endif
-						</span>
+							@if(config('blog.withTags') && $post->tags)
+							<li class="mx-1" name="tags">
+								<span class="opacity-75">
+									Tags:
+								</span>
+								<x-post-tags :tags="$post->tags" class="inline-flex"/>
+							</li>
+							@endif
+						</ul>
 					</div>
-					<p class="text-lg my-3">{{ $post->description }}</p>
 					<figure>
 						<span class="post-header-image rounded-lg" role="img" style="background-image: url('{{ $post->featured_image }}');" alt="Featured Image"></span>
 					</figure>
@@ -105,6 +122,9 @@
 						to leave a comment! 
 					@endguest
 				</footer>
+				@endif
+				@if(config('blog.withTags') && $post->tags)
+					<x-post-tags :tags="$post->tags"/>
 				@endif
 			</article>
 
