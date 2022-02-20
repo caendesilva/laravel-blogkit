@@ -28,8 +28,8 @@ class PostController extends Controller
     {
         if ($request->has('filterByTag')) {
             return view('post.index', [
-                'title' => 'Posts with tag ' . $request->get('filterByTag'),
-                'filter' => 'Filtered by tag "' . $request->get('filterByTag') . '"',
+                'title' => 'Posts with '. __('blog.tag') .' ' . $request->get('filterByTag'),
+                'filter' => 'Filtered by '. __('blog.tag') .' "' . $request->get('filterByTag') . '"',
                 'posts' => Post::whereJsonContains('tags', $request->get('filterByTag'))->get(),
             ]);
         }

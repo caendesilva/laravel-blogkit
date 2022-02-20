@@ -5,7 +5,7 @@ return [
 	 * Configure settings related to the blog.
 	 */
 
-	// Should tags be enabled? Tip: you can customize the name in the lang file, for example, in case you want to call them categories.
+	// Should tags be enabled? Tip: you can customize the name in the en\blog.php lang file, for example, in case you want to call them categories.
 	'withTags' => true, // Default: true
 
 	// Should tags be shown on the post card component? Feel free to disable this to reduce clutter.

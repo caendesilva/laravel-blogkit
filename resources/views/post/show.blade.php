@@ -55,7 +55,7 @@
 							@if(config('blog.withTags') && $post->tags)
 							<li class="mx-1" name="tags">
 								<span class="opacity-75">
-									Tags:
+									{{ __('blog.tags') }}:
 								</span>
 								<x-post-tags :tags="$post->tags" class="inline-flex"/>
 							</li>
@@ -122,9 +122,6 @@
 						to leave a comment! 
 					@endguest
 				</footer>
-				@endif
-				@if(config('blog.withTags') && $post->tags)
-					<x-post-tags :tags="$post->tags"/>
 				@endif
 			</article>
 
