@@ -25,7 +25,7 @@
 	'showVersion' => true,
 ])
 
-<footer class="w-full p-5 pt-6 bg-gray-500 bg-opacity-10 text-gray-700 dark:text-gray-300 text-center">
+<footer class="w-full mt-auto p-5 pt-6 bg-gray-500 bg-opacity-10 text-gray-700 dark:text-gray-300 text-center">
 	@if($showCopyright)
 	<div class="mx-3">
 		<small class="text-sm">
