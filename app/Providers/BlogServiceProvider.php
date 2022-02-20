@@ -26,7 +26,14 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        /**
+         * If Torchlight syntax highlighting is enabled we hook into the Commonmark resolver to add the extension.
+         */
+        if (config('blog.torchlight.enabled')) {
+            $this->callAfterResolving('markdown.environment', function ($environment) {
+                $environment->addExtension(new \Torchlight\Commonmark\V2\TorchlightExtension());
+            });
+        }
     }
 
     /**

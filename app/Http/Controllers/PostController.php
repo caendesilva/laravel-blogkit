@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -89,9 +88,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         // Generate formatted HTML from markdown
-        $markdown = config('blog.torchlight.enabled')
-            ? Markdown::convertToHtml($post->body) // If Torchlight is enabled use the Markdown package
-            : Str::markdown($post->body); // Otherwise use the built in GitHub markdown parser
+        $markdown = Markdown::convertToHtml($post->body);
 
         $torchlightUsed = config('blog.torchlight.enabled') === true // Check if Torchlight is enabled and if attribution is enabled. If it is not, we don't need to search the text.
             && config('blog.torchlight.attribution') === true

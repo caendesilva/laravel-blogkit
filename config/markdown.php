@@ -46,10 +46,8 @@ return [
 
     'extensions' => [
         League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class,
+        League\CommonMark\Extension\GithubFlavoredMarkdownExtension::class,
         League\CommonMark\Extension\Table\TableExtension::class,
-
-        // Torchlight syntax highlighting
-        \Torchlight\Commonmark\V2\TorchlightExtension::class,
     ],
 
     /*
@@ -122,7 +120,7 @@ return [
     |
     */
 
-    'allow_unsafe_links' => true,
+    'allow_unsafe_links' => false,
 
     /*
     |--------------------------------------------------------------------------

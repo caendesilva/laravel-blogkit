@@ -50,6 +50,8 @@ Current todo list:
 - [ ] Add Sweet Alerts, or similar, to handle session flashes
 - [ ] Add "load more" style pagination to comments
 - [x] Add this readme as a page on the demo site
+- [ ] Add Markdown caching (and clear post cache when updating post)
+- [ ] Add Artisan command to generate posts from frontmatter Markdown
 
 ## Open Source Attributions
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:
