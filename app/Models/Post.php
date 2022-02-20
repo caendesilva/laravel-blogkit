@@ -24,6 +24,15 @@ class Post extends Model
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'tags' => 'array',
+    ];
+
+    /**
      * The "booted" method of the model.
      *
      * @return void

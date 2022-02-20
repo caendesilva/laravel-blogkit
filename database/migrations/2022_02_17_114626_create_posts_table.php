@@ -27,6 +27,8 @@ return new class extends Migration
 
             $table->string('featured_image', 255)->nullable(); // Post cover and social sharing image
 
+            $table->json('tags')->nullable(); // Post tags (categories)
+
             $table->longText('body'); // The Post Body
             $table->timestamps();
         });

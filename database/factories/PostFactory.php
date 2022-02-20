@@ -28,6 +28,7 @@ class PostFactory extends Factory
             'body' => $this->getMarkdown(),
             'featured_image' => $this->getFeaturedImage(),
             'created_at' => $this->faker->dateTimeThisYear(),
+            'tags' => $this->getTags(),
         ];
     }
 
@@ -36,7 +37,8 @@ class PostFactory extends Factory
      * 
      * @return string
      */
-    private function getMarkdown() {
+    private function getMarkdown()
+    {
         $faker = \Faker\Factory::create();
         $faker->addProvider(new \DavidBadura\FakerMarkdownGenerator\FakerProvider($faker));
 
@@ -49,7 +51,30 @@ class PostFactory extends Factory
      * 
      * @return string
      */
-    private function getFeaturedImage() {
+    private function getFeaturedImage()
+    {
         return "https://picsum.photos/seed/" . rand(0, 99) . "/960/320";
+    }
+
+    /**
+     * Generate some tags.
+     * 
+     * @return array|null $tags
+     */
+    private function getTags()
+    {
+        if (!config('blog.withTags')) {
+            return [];
+        }
+
+        $array = [];
+        $tagcount = rand(0, rand(1, 3)); // Generate a weighted number of tags
+
+        for ($i=0; $i < $tagcount; $i++) { 
+            $words = rand(1, rand(1, rand(1, 3))); // Generate a weighted number of words in the tag
+            $array[] = $this->faker->words($words, true);
+        }
+
+        return $array;
     }
 }

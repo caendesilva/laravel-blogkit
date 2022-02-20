@@ -1040,6 +1040,14 @@ select {
   margin-top: auto;
   margin-bottom: auto;
 }
+.-mx-1 {
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+}
+.-my-2 {
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1117,6 +1125,15 @@ select {
 }
 .-mr-2 {
   margin-right: -0.5rem;
+}
+.-mb-5 {
+  margin-bottom: -1.25rem;
+}
+.-mb-3 {
+  margin-bottom: -0.75rem;
+}
+.-mb-2 {
+  margin-bottom: -0.5rem;
 }
 .block {
   display: block;
@@ -1336,6 +1353,9 @@ select {
 }
 .rounded {
   border-radius: 0.25rem;
+}
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
@@ -1753,6 +1773,9 @@ select {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+.text-opacity-75 {
+  --tw-text-opacity: 0.75;
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -1947,6 +1970,10 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
 .hover\:bg-gray-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+.hover\:bg-indigo-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
