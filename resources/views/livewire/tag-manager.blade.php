@@ -2,16 +2,16 @@
     <x-label for="tags" :value="__('blog.Tags')" />
     {{-- Add a new tag --}}
     <div class="flex">
-        <x-input list="existingTags" id="addTag" name="addTag" wire:model="addTag" wire:keydown.enter.prevent="addTag" type="text" class="w-full sm:w-fit mt-1 mr-3 form-select" maxlength="16" placeholder="Add a {{ __('blog.tag') }}"/>
+        <x-input list="existingTags" id="tagInput" name="tagInput" wire:model="tagInput" wire:keydown.enter.prevent="addTag" type="text" class="w-full sm:w-fit mt-1 mr-3 form-select" maxlength="16" placeholder="Add a {{ __('blog.tag') }}"/>
         <x-button type="button" class="mt-1" wire:click="addTag" wire:loading.attr="disabled" wire:target="addTag">Add</x-button>
     </div>
     <div class="mt-1">
-        @if(strlen($addTag) > 8)
+        @if(strlen($tagInput) > 8)
         <span class="dark:text-gray-300">
             Tip: Short {{ __('blog.tag') }} names are best!
         </span>
         @endif
-        @error('addTag') <span class="text-red-500">{{ $message }}</span> @enderror
+        @error('tagInput') <span class="text-red-500">{{ $message }}</span> @enderror
         @error('tags') <span class="text-red-500">{{ $message }}</span> @enderror
     </div>
 
@@ -26,11 +26,19 @@
     @if($tags)
     <div class="mt-2">
         <label for="tags" class="dark:text-white">Added {{ __('blog.tags') }}:</label>
-        <div class="flex -mx-1">
+        <ul class="flex -mx-1">
+            <!-- Thanks to https://a11y-guidelines.orange.com/en/web/components-examples/tags/ for the help in making this component accessible -->
             @foreach ($tagsArray as $tag)
-            <span class="bg-gray-300 dark:bg-gray-500 dark:text-black px-2 py-1 m-1 rounded-lg text-sm">{{ $tag }}</span>
+            <li class="bg-gray-300 dark:bg-gray-500 dark:text-black px-2 py-1 m-1 rounded-lg text-sm">
+                <span class="sr-only">{{ $tag }}</span>
+                <button type="button" wire:click="removeTag('{{ $tag }}')" title="Remove {{ __('blog.tag') }}" aria-label="Remove {{ $tag }} from the list">
+                    {{ $tag }}
+
+                    &times;
+                </button>
+            </li>
             @endforeach
-        </div>
+        </ul>
     </div>
     @endif
 

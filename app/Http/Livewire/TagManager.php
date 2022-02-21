@@ -18,9 +18,9 @@ class TagManager extends Component
     public array $tagsArray = [];
 
     /**
-     * @var string $addTag the input element containing the tag the user wants to add
+     * @var string $tagInput the input element containing the tag the user wants to add
      */
-    public string $addTag = "";
+    public string $tagInput = "";
 
     /**
      * @var string $tags the json we submit in the form
@@ -33,7 +33,7 @@ class TagManager extends Component
      * @var array $rules
      */
     protected $rules = [
-        'addTag' => 'string|required',
+        'tagInput' => 'string|required',
         'tags' => 'json|nullable',
     ];
 
@@ -43,7 +43,7 @@ class TagManager extends Component
      * @var array $messages
      */
     protected $messages = [
-        'addTag.required' => '',
+        'tagInput.required' => '',
     ];
 
     /**
@@ -62,14 +62,33 @@ class TagManager extends Component
         $this->existingTags = Tag::all();
     }
 
+    /**
+     * Add the tag in the input field to the array.
+     * 
+     * @return void
+     */
     public function addTag()
     {
         $this->validate();
 
-        $this->tagsArray[] = $this->addTag; // Add the tag to the array
+        $this->tagsArray[] = $this->tagInput; // Add the tag to the array
 
-        $this->addTag = ""; // Clear the input
+        $this->tagInput = ""; // Clear the input
 
+        $this->tags = json_encode($this->tagsArray);
+    }
+
+    /**
+     * Remove the clicked tag from the array.
+     * 
+     * @see https://www.php.net/manual/en/function.array-splice.php
+     * 
+     * @param string $tag to remove
+     * @return void
+     */
+    public function removeTag(string $tag)
+    {
+        array_splice($this->tagsArray, array_search($tag, $this->tagsArray ), 1);
         $this->tags = json_encode($this->tagsArray);
     }
 
