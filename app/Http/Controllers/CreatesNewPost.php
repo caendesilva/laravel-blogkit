@@ -37,7 +37,10 @@ class CreatesNewPost extends Controller
      */
     private function getUniqueSlug(string $title): string {
         $slug = Str::slug($title);
-        return Post::where('slug', $slug)->count()
+        if (in_array($slug, ["index", "create", "store", "show", "edit", "update", "destroy"])) {
+            $slug = $slug . "-" . "post";
+        }
+        return (Post::where('slug', $slug)->count())
             ? $slug . "-" . Post::max('id') + 1 // Append the largest ID of posts + one.
             : $slug;
     }
