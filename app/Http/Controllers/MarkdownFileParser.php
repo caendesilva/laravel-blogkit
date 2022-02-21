@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Illuminate\Support\Str;
 
 /**
  * Handle Markdown file based posts.
@@ -22,19 +23,32 @@ class MarkdownFileParser extends Controller
 {
     public const MARKDOWN_DIRECTORY = '/resources/markdown/'; // The default directory for markdown posts
 
-    protected Post $post;
+    /**
+     * Static methods (not relating to a single markdown post instance)
+     */
 
-    public function parse(string $filepath)
+    
+
+    /**
+     * Methods relating to a single markdown post instance
+     */
+
+     protected Post $post;
+
+    public function parse(string $filename, string|null $filepath = null)
     {
-        $fullpath = base_path() . SELF::MARKDOWN_DIRECTORY . $filepath . '.md';
-        $object = YamlFrontMatter::parse(file_get_contents($fullpath));
+        if (!$filepath) {
+            $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
+        }
+
+        $object = YamlFrontMatter::parse(file_get_contents($filepath));
 
         // Validate and sanitize
         $validated = $this->validateMatter(
             array_merge($object->matter(), [
                 'body' => $object->body(),
-                'slug' => $filepath,
-                'updated_at' => filemtime($fullpath),
+                'slug' => $filename,
+                'updated_at' => filemtime($filepath),
             ])
         );
 
@@ -60,6 +74,10 @@ class MarkdownFileParser extends Controller
     {
         return $this->post;
     }
+
+    /**
+     * Internal methods
+     */
 
     private function validateMatter(array $matter)
     {
@@ -107,16 +125,22 @@ class MarkdownFileParser extends Controller
             throw new Exception('Could not parse modification date', 1);
         }
 
+        try {
+            $slug = Str::slug($validated['slug']);
+        } catch (\Throwable $th) {
+            throw new Exception('Could not generate slug', 1);
+        }
+
         $data = [
             'title'          => $validated['title'],
             'body'           => $validated['body'],
             'description'    => $validated['description'],
             'featured_image' => $validated['featured_image'],
-            'slug'           => $validated['slug'],
             'created_at'     => $created_at,
             'updated_at'     => $updated_at,
             'user_id'        => $author->id,
             'tags'           => $tags,
+            'slug'           => $slug,
         ];
         
         return $data; // The validation passed
