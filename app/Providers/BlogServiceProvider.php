@@ -15,9 +15,9 @@ class BlogServiceProvider extends ServiceProvider
      * Uses Semantic Versioning
      * @see https://semver.org/
      * 
-     * @version 1.0.0-Pre
+     * @version 1.0.0
      */
-    const BLOGKIT_VERSION = "1.0.0-Pre";
+    const BLOGKIT_VERSION = "1.0.0";
 
     /**
      * Register services.
