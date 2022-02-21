@@ -25,9 +25,10 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
+            'body' => 'required|string',
             'description' => 'nullable|string|max:255',
             'featured_image' => 'nullable|url|max:255',
-            'body' => 'required|string',
+            'tags' => 'nullable|json',
         ];
     }
 }

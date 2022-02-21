@@ -3,7 +3,7 @@
     {{-- Add a new tag --}}
     <div class="flex">
         <x-input list="existingTags" id="addTag" name="addTag" wire:model="addTag" wire:keydown.enter.prevent="addTag" type="text" class="w-full sm:w-fit mt-1 mr-3 form-select" maxlength="16" placeholder="Add a {{ __('blog.tag') }}"/>
-        <x-button type="button" class="mt-1" wire:click="addTag">Add</x-button>
+        <x-button type="button" class="mt-1" wire:click="addTag" wire:loading.attr="disabled" wire:target="addTag">Add</x-button>
     </div>
     <div class="mt-1">
         @if(strlen($addTag) > 8)

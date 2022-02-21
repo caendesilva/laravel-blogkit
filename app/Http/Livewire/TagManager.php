@@ -15,7 +15,7 @@ class TagManager extends Component
     /**
      * @var array $tagsArray the array of tags we generate
      */
-    public array $tagsArray;
+    public array $tagsArray = [];
 
     /**
      * @var string $addTag the input element containing the tag the user wants to add
@@ -46,8 +46,19 @@ class TagManager extends Component
         'addTag.required' => '',
     ];
 
-    public function mount()
+    /**
+     * Construct the component.
+     * 
+     * @param array|null $currenttags if the post is being updated, pass the current tags to the constructor
+     * @return void
+     */
+    public function mount(array $currenttags = null)
     {
+        if ($currenttags) {
+            $this->tagsArray = $currenttags;
+            $this->tags = json_encode($this->tagsArray);
+        }
+
         $this->existingTags = Tag::all();
     }
 
