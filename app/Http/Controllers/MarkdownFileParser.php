@@ -133,7 +133,12 @@ class MarkdownFileParser extends Controller
 
         // dd($validated = $validator->validated());
         
-        $author = User::find($validated['author'])->first();
+        try {
+            $author = User::find($validated['author'])->first();
+        } catch (\Throwable $th) {
+            throw new Exception('Could not find any users', 1);
+        }
+
         if (!$author) {
             throw new Exception('User does not exist', 1);
         }
