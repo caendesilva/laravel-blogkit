@@ -18,6 +18,10 @@
 *  **Users & Comments:** Users can create accounts and leave comments. If you want them too. You can even require users to verify their emails to comment.
 *  **Semantic and data-rich SEO-minded HTML:** The frontend adheres to follow the practices of Semantic HTML. Blog articles are automatically injected with Open Graph meta tags for better SEO. 
 
+## Demos:
+Static demo of the default install: https://caendesilva.github.io/laravel-blogkit-static-demo/
+Live blog (my own (customized) blog built with this kit): https://blog.desilva.se/
+
 ## Get Started
 Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
 
