@@ -61,6 +61,7 @@ Current todo list:
 - [ ] Add theme color option
 - [ ] Image uploads
 - [ ] Write more tests
+- [ ] Add option to disable the "last updated" feature in the frontend
 
 ## Open Source Attributions
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:
