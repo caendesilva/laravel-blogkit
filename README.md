@@ -8,6 +8,8 @@
 
 ## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 9, TailwindCSS, AlpineJS, and Livewire!
 
+<img src="https://cdn.jsdelivr.net/gh/caendesilva/laravel-blogkit-static-demo@latest/storage/screenshots/devices/laptop_composite-min.png" />
+
 ## Features
 * **Highly Customizable:** Turn features on and off in the config
 *  **Security Focused CMS:** A CMS for Posts, Users, and Comments with strong and customizable security policies is included out of the box. You can easily update user's permissions as well.
