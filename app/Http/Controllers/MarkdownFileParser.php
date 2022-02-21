@@ -89,13 +89,13 @@ class MarkdownFileParser extends Controller
 
     public function save()
     {
-        if (Post::where('slug', $this->post->slug)) {
+        if (Post::where('slug', $this->post->slug)->exists()) {
             $replacing = Post::where('slug', $this->post->slug)->firstOrFail();
             $id = $replacing->id;
             $replacing->delete();
+            $this->post->id = $id;
         }
-
-        $this->post->id = $id;
+        
         $this->post->save();
         
         return $this;
