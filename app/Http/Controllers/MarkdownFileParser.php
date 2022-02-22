@@ -27,34 +27,7 @@ class MarkdownFileParser extends Controller
      * Static methods (not relating to a single markdown post instance)
      */
 
-    public static function sync(string $filename = null) {
-        $time_start = microtime(true); 
-        $count = (int) 0;
-
-        $files = [];
-
-        if ($filename === null) {
-            foreach (glob(base_path() . SELF::MARKDOWN_DIRECTORY. "*.md") as $filepath) {
-                $files[basename($filepath)] = $filepath;
-            }
-        } else {
-            $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
-            if (!file_exists($filepath)) {
-                throw new Exception("File not found", 1);
-            }
-            $files[$filename] = $filepath;
-        }
-
-        foreach ($files as $filename => $filepath) {
-            $count++;
-            $parser = new SELF;
-            $parser->parse($filename, $filepath)
-                ->save();
-        }
-
-        $time = (float) number_format(((microtime(true) - $time_start) / 60), 2);
-        return "Synced {$count} posts in {$time} seconds. ";
-    }
+    
     
 
     /**
