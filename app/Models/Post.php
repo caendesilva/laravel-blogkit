@@ -24,6 +24,7 @@ class Post extends Model
         'description',
         'featured_image',
         'tags',
+        'published_at',
     ];
 
     /**
