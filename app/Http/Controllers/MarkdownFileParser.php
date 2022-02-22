@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
+use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use Carbon\Carbon;
-use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-use Illuminate\Support\Str;
 
 /**
  * Handle Markdown file based posts.
@@ -21,14 +20,27 @@ use Illuminate\Support\Str;
  */
 class MarkdownFileParser extends Controller
 {
-    public const MARKDOWN_DIRECTORY = '/resources/markdown/'; // The default directory for markdown posts
+    /**
+     * The default directory for markdown posts
+     */
+    public const MARKDOWN_DIRECTORY = '/resources/markdown/'; 
 
     /**
-     * Note that some of these may be moved to (or referenced in) a facade.
-     * 
      * Static methods (not relating to a single markdown post instance)
+     * 
+     * Note that some of these may be moved to (or referenced in) a facade.
      */
 
+    /**
+     * Get the qualified file path from the name of a markdown file
+     * 
+     * @example getQualifiedFilepath("example-post") returns "/mnt/c/sites/laravel-blogkit/resources/markdown/example-post.md"
+     * 
+     * @param string $filename the name of the markdown file (without the extension)
+     * @param bool $validateExistance should the method check if the file exists on disk?
+     * 
+     * @return string
+     */
     public static function getQualifiedFilepath(string $filename, bool $validateExistance = true): string {
         $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
 
@@ -39,13 +51,18 @@ class MarkdownFileParser extends Controller
         return $filepath;
     }
     
+    /**
+     * Sync markdown files to the database.
+     * 
+     * @param string|null $filename to sync. If this is set, only the specified file will be synced. Else, all files in the directory will be synced.
+     * @return string $message a human status message
+     */
     public static function sync(string $filename = null) {
         $time_start = microtime(true);
         $count = (int) 0;
 
         $files = [];
 
-        // Sync upstream
         if ($filename === null) {
             $files = SELF::getMarkdownPostsAsArray();
         } else {
@@ -62,7 +79,7 @@ class MarkdownFileParser extends Controller
         }
 
         $time = (float) ((microtime(true) - $time_start) / 60);
-        return "Synced {$count} posts in {$time} seconds. ";
+        return "Synced {$count} posts in {$time} seconds.";
     }
 
     /**
@@ -86,8 +103,21 @@ class MarkdownFileParser extends Controller
      * Methods relating to a single markdown post instance
      */
 
-     protected Post $post;
+    /**
+     * The Post instance created by the parser
+     * 
+     * @var Post $post
+     */
+    protected Post $post;
 
+    /**
+     * Parse a markdown file and create a Post instance
+     * 
+     * @param string $filename of the markdown file
+     * @param string|null $filepath optionally provide the full filepath
+     * 
+     * @return $this
+     */
     public function parse(string $filename, string|null $filepath = null)
     {
         if (!$filepath) {
@@ -112,6 +142,11 @@ class MarkdownFileParser extends Controller
         return $this;
     }
 
+    /**
+     * Save the current Post instance
+     * 
+     * @return $this
+     */
     public function save()
     {
         if (Post::where('slug', $this->post->slug)->exists()) {
@@ -126,7 +161,12 @@ class MarkdownFileParser extends Controller
         return $this;
     }
 
-    public function get()
+    /**
+     * Return the current Post instance
+     * 
+     * @return \App\Models\Post
+     */
+    public function get(): \App\Models\Post
     {
         return $this->post;
     }
@@ -135,7 +175,13 @@ class MarkdownFileParser extends Controller
      * Internal methods
      */
 
-    private function validateMatter(array $matter)
+    /**
+     * Validate and sanitize the front matter data
+     * 
+     * @param array $matter the frontmatter array
+     * @return array $data the validated and sanitized data
+     */
+    private function validateMatter(array $matter): array
     {
         $validator = Validator::make($matter, [
             'author'         => 'numeric',
@@ -192,6 +238,7 @@ class MarkdownFileParser extends Controller
             throw new Exception('Could not generate slug', 1);
         }
 
+        // Assemble the data array
         $data = [
             'title'          => $validated['title'],
             'body'           => $validated['body'],
