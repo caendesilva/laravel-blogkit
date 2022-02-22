@@ -63,6 +63,7 @@ Current todo list:
 - [ ] Write more tests
 - [ ] Add option to disable the "last updated" feature in the frontend
 - [ ] Add option to disable the CMS (if one just wants to use plain markdown files)
+- [ ] Add drafts manager for the drafts stored in the user's localstorage
 
 ## Open Source Attributions
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:
