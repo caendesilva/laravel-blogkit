@@ -102,6 +102,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('view', $post);
+
         // Generate formatted HTML from markdown
         $markdown = (new MarkdownConverter($post->body))->toHtml();
 

@@ -31,7 +31,12 @@ class PostPolicy
      */
     public function view(User $user, Post $post)
     {
-        return true;
+        if ($post->isPublished()) {
+            return true;
+        }
+        
+        // Determine whether the user can view a post that is scheduled to be published in the future which inherits the update permissions.
+        return $user->can('update', $post);
     }
 
     /**
