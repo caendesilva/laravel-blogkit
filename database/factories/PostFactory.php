@@ -20,8 +20,14 @@ class PostFactory extends Factory
     {
         $title = $this->faker->sentence();
 
+        $user = User::all()->random();
+        if (!$user->is_author) {
+            $user->is_author = true; // Make sure the user becomes an author
+            $user->save();
+        }
+
         return [
-            'user_id' => User::pluck('id')->random(),
+            'user_id' => $user->id,
             'title' => $title,
             'slug' => Str::slug($title),
             'description' => $this->faker->sentence(),
