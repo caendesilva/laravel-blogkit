@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::table('posts', function (Blueprint $table) {
             $table->timestamp('published_at')
                 ->after('updated_at')
-                ->default(now())
                 ->nullable();
         });
     }
