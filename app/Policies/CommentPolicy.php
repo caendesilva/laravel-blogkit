@@ -30,10 +30,6 @@ class CommentPolicy
         if ($user->is_admin == true) {
             return true;
         }
-        
-        return $user->id === $comment->user_id
-            ? Response::allow()
-            : Response::deny('You do not own this comment.');
     }
 
     /**
