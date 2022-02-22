@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\MarkdownFileParser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
@@ -87,6 +88,22 @@ class Post extends Model
                 ? asset('storage/default.jpg')
                 : $value
         );
+    }
+
+    /**
+     * Check if the post was created using a markdown file. Used to show a warning in the editor that changes may be overridden if the file is changed.
+     * 
+     * @return bool
+     */
+    public function isFileBased(): bool
+    {
+        try {
+            MarkdownFileParser::getQualifiedFilepath($this->slug);
+            return true;
+        } catch (\Throwable $th) {
+            //
+        }
+        return false;
     }
 
     /**

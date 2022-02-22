@@ -37,14 +37,14 @@ class MarkdownFileParser extends Controller
      * @example getQualifiedFilepath("example-post") returns "/mnt/c/sites/laravel-blogkit/resources/markdown/example-post.md"
      * 
      * @param string $filename the name of the markdown file (without the extension)
-     * @param bool $validateExistance should the method check if the file exists on disk?
+     * @param bool $validateExistence should the method check if the file exists on disk?
      * 
      * @return string
      */
-    public static function getQualifiedFilepath(string $filename, bool $validateExistance = true): string {
+    public static function getQualifiedFilepath(string $filename, bool $validateExistence = true): string {
         $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
 
-        if ($validateExistance && !file_exists($filepath)) {
+        if ($validateExistence && !file_exists($filepath)) {
             throw new Exception("File not found", 1);
         }
 
