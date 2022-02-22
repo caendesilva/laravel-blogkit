@@ -40,13 +40,13 @@
                                 <tr>
                                     <x-th>Author</x-th>
                                     <x-th>Title</x-th>
-                                    <x-th>Date</x-th>
+                                    <x-th>Published</x-th>
                                     <x-th>Actions</x-th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray:700 dark:text-gray-300">
                                 @foreach ($posts as $post)
-                                <tr>
+                                <tr class="group">
                                     <x-td>
                                         <a href="{{ route('posts.index', ['author' => $post->author]) }}" rel="author" class="hover:text-indigo-500">
                                             {{ $post->author->name }}
@@ -60,7 +60,17 @@
                                         </div>
                                     </x-td>
                                     <x-td>
-                                        {{ $post->created_at->format('Y-m-d')}}
+                                        @if($post->isPublished())
+                                        <span title="{{ $post->published_at }}">{{ $post->published_at->format('Y-m-d') }}</span>
+                                        @else
+                                        <span class="rounded-lg bg-gray-400 text-gray-900 px-2 py-1 text-xs uppercase font-bold" title="This post has not yet been published.">Draft</span>
+                                        @can('update', $post)
+                                        <form action="{{ route('posts.publish', ['post' => $post]) }}" method="POST" class="inline ml-2">
+                                            @csrf
+                                            <button type="submit" title="Click to publish the post" class="rounded-lg opacity-0 group-hover:opacity-100 transition-opacity bg-green-400 text-green-900 px-2 py-1 text-xs uppercase font-bold">Publish</button>
+                                        </form>
+                                        @endcan
+                                        @endif
                                     </x-td>
                                     <x-td class="text-center">
                                         @can('update', $post)
@@ -104,9 +114,19 @@
                                     </x-td>
                                 </tr>
                                 <tr>
-                                    <x-th>Date</x-th>
+                                    <x-th>Published</x-th>
                                     <x-td>
-                                        {{ $post->created_at->format('Y-m-d')}}
+                                        @if($post->isPublished())
+                                        <span title="{{ $post->published_at }}">{{ $post->published_at->format('Y-m-d') }}</span>
+                                        @else
+                                        <span class="rounded-lg bg-gray-400 text-gray-900 px-2 py-1 text-xs uppercase font-bold" title="This post has not yet been published.">Draft</span>
+                                        @can('update', $post)
+                                        <form action="{{ route('posts.publish', ['post' => $post]) }}" method="POST" class="inline ml-2">
+                                            @csrf
+                                            <button type="submit" title="Click to publish the post" class="rounded-lg opacity-0 group-hover:opacity-100 transition-opacity bg-green-400 text-green-900 px-2 py-1 text-xs uppercase font-bold">Publish</button>
+                                        </form>
+                                        @endcan
+                                        @endif
                                     </x-td>
                                 </tr>
                                 <tr>

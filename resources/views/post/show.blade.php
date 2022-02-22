@@ -10,8 +10,12 @@
 	<meta property="og:description" content="{{ $post->description }}">
 	<meta property="og:image" content="{{ $post->featured_image }}">
 	<meta property="og:url" content="{{ route('posts.show', ['post' => $post]) }}">
-	<meta property="og:article:published_time" content="{{ $post->created_at }}">
+	@if($post->isPublished())
+	<meta property="og:article:published_time" content="{{ $post->published_at }}">
+	@endif
+	@if(config('blog.showUpdatedAt'))
 	<meta property="og:article:modified_time " content="{{ $post->updated_at }}">
+	@endif
 	<meta name="twitter:card" content="summary_large_image">
 	@endpush
 
@@ -23,7 +27,16 @@
 						<thead>
 							<tr>
 								<th class="text-left">
-									<h1 class="text-3xl font-bold">{{ $post->title }}</h1>
+									<h1 class="text-3xl font-bold">
+										@if($post->isPublished())
+										{{ $post->title }}
+										@else
+										<span class="opacity-75" title="This post has not yet been published">
+											Draft: 
+										</span>
+										<i>{{ $post->title }}</i>
+										@endif
+									</h1>
 								</th>
 								<td class="text-right whitespace-nowrap align-top pt-2 pl-5 hidden sm:block">
 									@can('update', $post)
@@ -43,14 +56,16 @@
 								</span>
 								<x-link :href="route('posts.index', ['author' => $post->author])" rel="author">{{ $post->author->name }}</x-link>
 							</li>
+							@if($post->isPublished())
 							<li class="mx-1 opacity-75" name="published_time">
-								<time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d g:ia') }}</time>.
+								<time datetime="{{ $post->published_at }}" title="Published {{ $post->published_at }}">{{ $post->published_at->format('Y-m-d g:ia') }}</time>.
 							</li>
-							@if($post->created_at !== $post->updated_at)
+							@if(config('blog.showUpdatedAt') && $post->published_at !== $post->updated_at)
 							<li class="mx-1 opacity-75" name="modified_time">
 								Updated
-								<time datetime="{{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
+								<time datetime="{{ $post->updated_at }}" title="Updated {{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
 							</li>
+							@endif
 							@endif
 							@if(config('blog.withTags') && $post->tags)
 							<li class="mx-1" name="tags">
@@ -82,7 +97,7 @@
 									<a href="{{ route('posts.index', ['author' => $comment->user]) }}">
 										<small class="opacity-75">&commat;</small>{{ $comment->user->name }}:
 									</a>
-									@if($comment->created_at != $comment->updated_at)
+									@if($comment->published_at != $comment->updated_at)
 										<i class="text-xs opacity-75" title="This comment was last updated {{ $comment->updated_at }}">Edited</i>
 									@endif
 								</div>

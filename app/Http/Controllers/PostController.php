@@ -177,6 +177,7 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         $post->published_at = now();
+        $post->save();
         return back()->with('success', 'Successfully Published Post!');
     }
     
@@ -191,6 +192,7 @@ class PostController extends Controller
         $this->authorize('update', $post);
 
         $post->published_at = null;
+        $post->save();
         return back()->with('success', 'Successfully Unpublished Post!');
     }
 

@@ -27,7 +27,7 @@ class PostFactory extends Factory
             'description' => $this->faker->sentence(),
             'body' => $this->getMarkdown(),
             'featured_image' => $this->getFeaturedImage(),
-            'created_at' => $this->faker->dateTimeThisYear(),
+            'published_at' => rand(0, 20) < 1 ? null : $this->faker->dateTimeThisYear(),
             'tags' => $this->getTags(),
         ];
     }

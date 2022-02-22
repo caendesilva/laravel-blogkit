@@ -12,14 +12,23 @@
                 
         <a href="{{ route('posts.show', $post) }}">
             <h3 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white break-words">
+                @if($post->isPublished())
                 {{ $post->title }}
+                @else
+                <span class="opacity-75" title="This post has not yet been published">
+                    Draft: 
+                </span>
+                <i>{{ $post->title }}</i>
+                @endif
             </h3>
         </a>
         
         <p class="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400 overflow-hidden text-ellipsis">
             By <x-link :href="route('posts.index', ['author' => $post->author])" rel="author">{{ $post->author->name }}</x-link>
+            @if($post->isPublished())
             <span class="opacity-75" role="none">&bullet;</span>
-            <time datetime="{{ $post->created_at }}">{{ $post->created_at->format('Y-m-d') }}</time>.
+            <time datetime="{{ $post->published_at }}" title="Published {{ $post->published_at }}">{{ $post->published_at->format('Y-m-d') }}</time>.
+            @endif
             @if(config('blog.allowComments'))
             <span class="inline float-right">
                 <span class="sr-only">

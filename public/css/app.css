@@ -1487,8 +1487,22 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
+}
+.bg-opacity-50 {
+  --tw-bg-opacity: 0.5;
+}
+.bg-opacity-0 {
+  --tw-bg-opacity: 0;
 }
 .fill-green-400 {
   fill: #4ade80;
@@ -1799,6 +1813,12 @@ select {
 .opacity-100 {
   opacity: 1;
 }
+.opacity-10 {
+  opacity: 0.1;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -1983,6 +2003,9 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
+.hover\:bg-opacity-100:hover {
+  --tw-bg-opacity: 1;
+}
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
@@ -2121,6 +2144,9 @@ pre code.torchlight .line-number, pre code.torchlight .summary-caret {
 }
 .group:hover .group-hover\:visible {
   visibility: visible;
+}
+.group:hover .group-hover\:bg-opacity-100 {
+  --tw-bg-opacity: 1;
 }
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;

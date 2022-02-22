@@ -12,11 +12,11 @@ class LatestBlogPosts extends Component
 
     public function render()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(12);
+        $posts = Post::paginate(12);
 
         // If we are in demo mode we only show the posts made by the factory.
         if (config('blog.demoMode')) {
-            $posts = Post::where('id', '<=', 36)->orderBy('created_at', 'desc')->paginate(12);
+            $posts = Post::where('id', '<=', 36)->orderBy('published_at', 'desc')->paginate(12);
         }
         
         return view('livewire.latest-blog-posts', [

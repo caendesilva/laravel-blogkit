@@ -46,9 +46,9 @@ class Post extends Model
     {
         parent::boot();
     
-        // Order by latest posts by default
+        // Order by latest posts by default, with draft posts first
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('published_at', 'desc');
+            $builder->orderByRaw('-published_at');
         });
 
         // Filter out posts that are not published
