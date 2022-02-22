@@ -6,28 +6,28 @@ return [
 	 */
 
 	// Should tags be enabled? Tip: you can customize the name in the en\blog.php lang file, for example, in case you want to call them categories.
-	'withTags' => true, // Default: true
+	'withTags' => env('BLOGKIT_TAGS_ENABLED', true), // Default: true
 
 	// Should tags be shown on the post card component? Feel free to disable this to reduce clutter.
-	'showTagsOnPostCard' => true, // Default: true
+	'showTagsOnPostCard' => env('BLOGKIT_TAGS_ENABLED_ON_CARDS', true), // Default: true
 
 	// Can users register for accounts? Note that while disabling this removes the registration route completely, you can still log in by going to the /login route.
-	'allowRegistrations' => true, // Default: true
+	'allowRegistrations' => env('BLOGKIT_REGISTRATIONS_ENABLED', true), // Default: true
 
 	// Can users leave comments?
-	'allowComments' => true, // Default: true
+	'allowComments' => env('BLOGKIT_COMMENTS_ENABLED', true), // Default: true
 
 	// Do users have to verify their emails to post comments? Note: make sure that you have set up the mailer before enabling this!
-	'requireVerifiedEmailForComments' => false, // Default: false
+	'requireVerifiedEmailForComments' => env('BLOGKIT_COMMENTS_VERIFY_EMAIL', false), // Default: false
 
 	// Should the site be in demo mode? (Do NOT use in production)
-	'demoMode' => false, // Default: false
+	'demoMode' => env('BLOGKIT_DEMO_MODE', false), // Default: false
 
 	// Should the Readme file be available as a '/readme route?
 	'readme' => false, // Default: false
 
 	// Enable ban feature?
-	'bans' => true, // Default: true
+	'bans' => env('BLOGKIT_BANS_ENABLED', true), // Default: true
 
 	/**
 	 * EasyMDE Text Editor
@@ -41,10 +41,10 @@ return [
 
 	'easyMDE' => [
 		// Should EasyMDE be enabled?
-		'enabled' => true, // Default: true
+		'enabled' => env('BLOGKIT_EASYMDE_ENABLED', true), // Default: true
 
 		// Customize the editor toolbar buttons
-		'toolbar' => null, // Default: null (use default toolbar)
+		'toolbar' => env('BLOGKIT_EASYMDE_TOOLBAR', null), // Default: null (use default toolbar)
 
 		// The toolbars available - note that the toolbar icons added are in addition to the default ones
 		'toolbars' => [
@@ -78,7 +78,7 @@ return [
 
 	'torchlight' => [
 		// Should Torchlight be enabled?
-		'enabled' => false, // Default: false
+		'enabled' => env('BLOGKIT_TORCHLIGHT_ENABLED', false), // Default: false
 		// Should an attribution badge be automatically injected on posts that use it? (Required if on the free plan)
 		'attribution' => true, // Default: true
 	]
