@@ -24,8 +24,11 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+
 Route::resource('posts', PostController::class);
- 
+Route::post('/posts/{post}/publish', [PostController::class, 'publish'])->name('posts.publish');
+Route::post('/posts/{post}/unpublish', [PostController::class, 'unpublish'])->name('posts.unpublish');
+
 Route::resource('comments', CommentController::class)->only([
     'edit',
     'destroy',
