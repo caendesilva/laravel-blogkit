@@ -24,11 +24,63 @@ class MarkdownFileParser extends Controller
     public const MARKDOWN_DIRECTORY = '/resources/markdown/'; // The default directory for markdown posts
 
     /**
+     * Note that some of these may be moved to (or referenced in) a facade.
+     * 
      * Static methods (not relating to a single markdown post instance)
      */
 
+    public static function getQualifiedFilepath(string $filename, bool $validateExistance = true): string {
+        $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
+
+        if ($validateExistance && !file_exists($filepath)) {
+            throw new Exception("File not found", 1);
+        }
+
+        return $filepath;
+    }
     
+    public static function sync(string $filename = null) {
+        $time_start = microtime(true);
+        $count = (int) 0;
+
+        $files = [];
+
+        // Sync upstream
+        if ($filename === null) {
+            $files = SELF::getMarkdownPostsAsArray();
+        } else {
+            $filepath = SELF::getQualifiedFilepath($filename);
+            
+            $files[$filename] = $filepath;
+        }
+
+        foreach ($files as $filename => $filepath) {
+            $count++;
+            (new SELF)
+                ->parse($filename, $filepath)
+                ->save();
+        }
+
+        $time = (float) ((microtime(true) - $time_start) / 60);
+        return "Synced {$count} posts in {$time} seconds. ";
+    }
+
+    /**
+     * Get an array of all filepaths of markdown files in the markdown directory 
+     * 
+     * @return array $files where key is the filename and the value is the filepath
+     */
+    public static function getMarkdownPostsAsArray(): array
+    {
+        $files = [];
     
+        foreach (glob(self::getQualifiedFilepath('*', false)) as $filepath) {
+            $files[substr(basename($filepath), 0, -3)] = $filepath; // Remove the extension and add the filepath to the array
+        }
+
+        return $files;
+    }
+
 
     /**
      * Methods relating to a single markdown post instance
@@ -39,7 +91,7 @@ class MarkdownFileParser extends Controller
     public function parse(string $filename, string|null $filepath = null)
     {
         if (!$filepath) {
-            $filepath = base_path() . SELF::MARKDOWN_DIRECTORY . $filename . '.md';
+            $filepath = SELF::getQualifiedFilepath($filename);
         }
 
         $object = YamlFrontMatter::parse(file_get_contents($filepath));

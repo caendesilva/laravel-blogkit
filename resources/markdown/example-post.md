@@ -5,7 +5,6 @@ published: "2022-01-01 12:00"
 tags: "tags, are separated, with commas"
 featured_image: "https://picsum.photos/960/640"
 author: 1
-visible: true
 ---
 
 # Welcome
@@ -20,7 +19,6 @@ published: "2022-01-01 12:00" # YYYY-MM-DD HH:MM
 tags: "tags, are separated, with commas"
 featured_image: "https://picsum.photos/960/640"
 author: 1 # The user ID
-visible: true # Should it be included in collections
 --‎-
 
 # Markdown here
