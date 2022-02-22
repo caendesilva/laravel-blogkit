@@ -5,6 +5,14 @@
 
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-8 sm:my-16">
+            @if($post->isFileBased())
+            <div class="bg-red-300 overflow-hidden shadow-sm sm:rounded-lg mb-5">
+                <div class="py-3 px-4 text-red-900">
+                    Warning! This post was created using a markdown file. Changes made here may be overridden!
+                </div>
+            </div>
+            @endif
+            
             <h1 class="text-3xl font-bold dark:text-white mb-8 sm:my-3 text-center sm:text-left">Update Blog Post</h1>
             <section class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
 				<form action="{{ route('posts.update', $post) }}" method="POST" class="text-gray-900">

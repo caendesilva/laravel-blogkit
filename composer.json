@@ -13,6 +13,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "spatie/yaml-front-matter": "^2.0",
         "torchlight/torchlight-commonmark": "*",
         "torchlight/torchlight-laravel": "^0.5.11"
     },
