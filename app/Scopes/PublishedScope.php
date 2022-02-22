@@ -18,10 +18,17 @@ class PublishedScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
+        // If user is admin we don't want to remove published posts
 		if (Auth::check() && Auth::user()->is_admin) {
 			return;
 		}
-
+        
+        // Apply the filter
         $builder->where('published_at', '<=', now());
+
+        // If the user has posts we do a special case to make sure they can see their own posts
+		if (Auth::check() && Auth::user()->is_author) {
+            return $builder->orWhere('user_id', Auth::id());
+        }
     }
 }
