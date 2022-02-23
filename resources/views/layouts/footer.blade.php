@@ -9,9 +9,10 @@
 		'name' => 'MIT',
 		'link' => 'https://opensource.org/licenses/MIT/'
 	],
+	
 	'contentLicense' => [
-		'name' => 'CC BY-SA 4.0',
-		'link' => 'http://creativecommons.org/licenses/by-sa/4.0/'
+		'name' => config('blog.contentLicense.name'),
+		'link' => config('blog.contentLicense.link')
 	],
 
 	'showCredit' => true,

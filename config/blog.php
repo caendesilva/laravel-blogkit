@@ -33,6 +33,22 @@ return [
 	'bans' => env('BLOGKIT_BANS_ENABLED', true), // Default: true
 
 	/**
+	 * Content License
+	 * 
+	 * What license should your blog posts be published under?
+	 * 
+	 * In the spirit of free and open source you can keep this as the default Creative Commons,
+	 * or you can set it to something other, such as "All Rights Reserved"
+	 * 
+	 * In the future you will be able to override this on a post-by-post basis
+	 */
+	'contentLicense' => [
+		'enabled' => true, // Should the content license feature be enabled?
+		'name' => 'CC BY-SA 4.0', // The name of the license
+		'link' => 'http://creativecommons.org/licenses/by-sa/4.0/' // Link to the license text
+	],
+
+	/**
 	 * EasyMDE Text Editor
 	 * 
 	 * This is the default text editor used when creating and updating posts.

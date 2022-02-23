@@ -17,77 +17,102 @@
 	<meta property="og:article:modified_time " content="{{ $post->updated_at }}">
 	@endif
 	<meta name="twitter:card" content="summary_large_image">
+	<meta name="author" content="{{ $post->author->name }}">
+	<meta name="description" content="{{ $post->description }}">
+	@if(config('blog.withTags') && $post->tags)
+	<meta name="keywords" itemprop="keywords" content="{{ implode(', ', $post->tags) }}">
+	@endif
+	@if(config('blog.contentLicense.enabled'))
+	<meta itemprop="license" content="{{ config('blog.contentLicense.link') }}">
+	@endif
 	@endpush
-
+	
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
         <div class="max-w-5xl w-full mx-auto sm:px-6 lg:px-8 my-8 md:my-16">
-            <article class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
+            <article itemscope itemtype="http://schema.org/Article" class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-4 px-6 dark:text-white">
+				<meta itemprop="identifier" content="{{ $post->slug }}">
+				<meta itemprop="url" content="{{ route('posts.show', $post) }}">
 				<header role="doc-pageheader" class="mb-5">
 					<table class="w-full">
 						<thead>
 							<tr>
 								<th class="text-left">
+									@if($post->isPublished())
+									<h1 itemprop="headline" class="text-3xl font-bold">{{ $post->title }}</h1>
+									@else
 									<h1 class="text-3xl font-bold">
-										@if($post->isPublished())
-										{{ $post->title }}
-										@else
 										<span class="opacity-75" title="This post has not yet been published">
 											Draft: 
 										</span>
 										<i>{{ $post->title }}</i>
-										@endif
 									</h1>
+									@endif
 								</th>
 								<td class="text-right whitespace-nowrap align-top pt-2 pl-5 hidden sm:block">
 									@can('update', $post)
 									<a href="{{ route('posts.edit', $post) }}" class="my-2 mr-2 opacity-75 hover:opacity-100 transition-opacity">Edit Post</a>
 									@endcan
-									<a href="/" class="my-2 opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
 								</td>
 							</tr>
 						</thead>
 					</table>
-					<p class="text-lg">{{ $post->description }}</p>
+					<p class="text-lg" itemprop="description">{{ $post->description }}</p>
 					<div aria-label="About the post" role="doc-introduction">
 						<ul class="text-sm flex flex-row flex-wrap -mx-1 mt-1 mb-2">
-							<li class="mx-1" name="author">
+							<li class="mx-1" name="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
 								<span class="opacity-75">
 									Posted by
 								</span>
-								<x-link :href="route('posts.index', ['author' => $post->author])" rel="author">{{ $post->author->name }}</x-link>
+								<x-link :href="route('posts.index', ['author' => $post->author])" rel="author" itemprop="url">
+									<span itemprop="name">
+										{{ $post->author->name }}
+									</span>
+								</x-link>
 							</li>
 							@if($post->isPublished())
 							<li class="mx-1 opacity-75" name="published_time">
-								<time datetime="{{ $post->published_at }}" title="Published {{ $post->published_at }}">{{ $post->published_at->format('Y-m-d g:ia') }}</time>.
+								<time datetime="{{ $post->published_at }}" itemprop="datePublished">{{ $post->published_at->format('Y-m-d g:ia') }}</time>.
 							</li>
 							@if(config('blog.showUpdatedAt') && $post->published_at !== $post->updated_at)
 							<li class="mx-1 opacity-75" name="modified_time">
 								Updated
-								<time datetime="{{ $post->updated_at }}" title="Updated {{ $post->updated_at }}">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
+								<time datetime="{{ $post->updated_at }}" itemprop="dateModified">{{ $post->updated_at->format('Y-m-d g:ia') }}</time>.
 							</li>
 							@endif
 							@endif
 							@if(config('blog.withTags') && $post->tags)
 							<li class="mx-1" name="tags">
 								<span class="opacity-75">
-									{{ __('blog.tags') }}:
+									{{ __('blog.Tags') }}:
 								</span>
-								<x-post-tags :tags="$post->tags" class="inline-flex"/>
+								<x-post-tags :tags="$post->tags" class="inline-flex" itemprop="keywords" :commaseparated="true"/>
 							</li>
 							@endif
 						</ul>
 					</div>
-					<figure>
-						<span class="post-header-image rounded-lg" role="img" style="background-image: url('{{ $post->featured_image }}');" alt="Featured Image"></span>
+					<figure class=" rounded-lg overflow-hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+						<meta itemprop="url" content="{{ $post->featured_image }}">
+						<img itemprop="image" src="{{ $post->featured_image }}" alt="Featured Image" class="post-header-image object-cover">
 					</figure>
 				</header>
 				
-				<div class="prose dark:prose-invert pb-3">
+				<section itemprop="articleBody" class="prose dark:prose-invert pb-3">
 					{!! $markdown !!}
-				</div>
+				</section>
 
-				@if(config('blog.allowComments'))
-				<footer id="comments" class="border-t-2 dark:border-gray-600 mt-5 pt-5 pb-2">
+				<footer>
+					@if(config('blog.allowComments'))
+				@if(config('blog.contentLicense.enabled'))
+				<small class="mx-1" itemprop="license" itemscope itemtype="https://schema.org/CreativeWork">
+					{{ __('This post is licensed under') }}
+					<a href="{{ config('blog.contentLicense.link') }}" itemprop="url" rel="copyright noopener nofollow" target="_blank" title="View license text in new tab">
+						<span itemprop="name">
+							{{ config('blog.contentLicense.name') }}
+						</span>
+					</a>
+				</small>
+				@endif
+				<section id="comments" class="border-t-2 dark:border-gray-600 mt-5 pt-5 pb-2">
 					<h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h2>
 					@if($post->comments)
 						<ul>
@@ -136,8 +161,9 @@
 						@endif
 						to leave a comment! 
 					@endguest
-				</footer>
+				</section>
 				@endif
+				</footer>
 			</article>
 
 			<div class="text-center dark:text-white mt-8 sm:hidden">
