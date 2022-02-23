@@ -11,6 +11,9 @@ return [
 	// Should tags be shown on the post card component? Feel free to disable this to reduce clutter.
 	'showTagsOnPostCard' => env('BLOGKIT_TAGS_ENABLED_ON_CARDS', true), // Default: true
 
+	// Should the updated at time be shown on edited posts?
+	'showUpdatedAt' => true, // Default: true
+
 	// Can users register for accounts? Note that while disabling this removes the registration route completely, you can still log in by going to the /login route.
 	'allowRegistrations' => env('BLOGKIT_REGISTRATIONS_ENABLED', true), // Default: true
 

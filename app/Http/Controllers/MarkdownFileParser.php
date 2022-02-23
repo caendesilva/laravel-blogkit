@@ -221,7 +221,7 @@ class MarkdownFileParser extends Controller
         }
 
         try {
-            $created_at = Carbon::parse($validated['published']);
+            $published_at = Carbon::parse($validated['published']);
         } catch (\Throwable $th) {
             throw new Exception('Could not parse publish date', 1);
         }
@@ -244,7 +244,7 @@ class MarkdownFileParser extends Controller
             'body'           => $validated['body'],
             'description'    => $validated['description'],
             'featured_image' => $validated['featured_image'],
-            'created_at'     => $created_at,
+            'published_at'     => $published_at,
             'updated_at'     => $updated_at,
             'user_id'        => $author->id,
             'tags'           => $tags,

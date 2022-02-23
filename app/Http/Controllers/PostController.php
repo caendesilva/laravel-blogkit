@@ -102,6 +102,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('view', $post);
+
         // Generate formatted HTML from markdown
         $markdown = (new MarkdownConverter($post->body))->toHtml();
 
@@ -163,6 +165,37 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', ['post' => $post]);
     }
+
+    /**
+     * Update the published_at date in the specified resource in storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function publish(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->published_at = now();
+        $post->save();
+        return back()->with('success', 'Successfully Published Post!');
+    }
+    
+    /**
+     * Update the published_at date in the specified resource in storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function unpublish(Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $post->published_at = null;
+        $post->save();
+        return back()->with('success', 'Successfully Unpublished Post!');
+    }
+
 
     /**
      * Remove the specified resource from storage.

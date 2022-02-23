@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Controllers\MarkdownFileParser;
+use App\Scopes\PublishedScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +24,7 @@ class Post extends Model
         'description',
         'featured_image',
         'tags',
+        'published_at',
     ];
 
     /**
@@ -32,6 +34,7 @@ class Post extends Model
      */
     protected $casts = [
         'tags' => 'array',
+        'published_at' => 'datetime',
     ];
 
     /**
@@ -43,12 +46,15 @@ class Post extends Model
     {
         parent::boot();
     
-        // Order by latest posts by default
+        // Order by latest posts by default, with draft posts first
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('created_at', 'desc');
+            $builder->orderByRaw('-published_at');
         });
-    }
 
+        // Filter out posts that are not published
+        static::addGlobalScope(new PublishedScope);
+    }
+    
     /**
      * Get the route key for the model.
      *
@@ -88,6 +94,16 @@ class Post extends Model
                 ? asset('storage/default.jpg')
                 : $value
         );
+    }
+
+    /**
+     * Check if the post is published by comparing the published_at date with the current date. 
+     * 
+     * @return bool
+     */
+    public function isPublished(): bool
+    {
+        return ($this->published_at !== null) && $this->published_at->isPast();
     }
 
     /**
