@@ -39,7 +39,6 @@
 									@can('update', $post)
 									<a href="{{ route('posts.edit', $post) }}" class="my-2 mr-2 opacity-75 hover:opacity-100 transition-opacity">Edit Post</a>
 									@endcan
-									<a href="/" class="my-2 opacity-75 hover:opacity-100 transition-opacity">Back to Home</a>
 								</td>
 							</tr>
 						</thead>
@@ -69,7 +68,7 @@
 							@if(config('blog.withTags') && $post->tags)
 							<li class="mx-1" name="tags">
 								<span class="opacity-75">
-									{{ __('blog.tags') }}:
+									{{ __('blog.Tags') }}:
 								</span>
 								<x-post-tags :tags="$post->tags" class="inline-flex" itemprop="keywords" :commaseparated="true"/>
 							</li>
@@ -91,7 +90,7 @@
 				@if(config('blog.contentLicense.enabled'))
 				<small class="mx-1" itemprop="license" itemscope itemtype="https://schema.org/CreativeWork">
 					{{ __('This post is licensed under') }}
-					<a href="{{ config('blog.contentLicense.link') }}" itemprop="url" rel="copyright">
+					<a href="{{ config('blog.contentLicense.link') }}" itemprop="url" rel="copyright noopener nofollow" target="_blank" title="View license text in new tab">
 						<span itemprop="name">
 							{{ config('blog.contentLicense.name') }}
 						</span>
