@@ -17,4 +17,21 @@
 		!!}
 	});
 </script>
+<style>
+	/* Fix for overflow bug in EasyMDE */
+	.EasyMDEContainer {
+		overflow-x: auto!important;
+		width: calc(100vw - 4rem)!important;
+	}
+	@media screen and (min-width: 640px) {
+		.EasyMDEContainer {
+			width: calc(100vw - 7rem)!important;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		.EasyMDEContainer {
+			width: 912px!important;
+		}
+	}
+</style>
 @endpush
