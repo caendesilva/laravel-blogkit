@@ -53,15 +53,15 @@ For best results, ensure that your cover images are 960 by 640 pixels as that is
 PRs are very much welcome!
 
 Current todo list:
-- [ ] Add Sweet Alerts, or similar, to handle session flashes
+- [ ] Unify session flashes
 - [ ] Add "load more" style pagination to comments
 - [x] Add this readme as a page on the demo site
 - [ ] Add Markdown caching (and clear post cache when updating post)
-- [ ] Add Artisan command to generate posts from frontmatter Markdown
+- [x] Add Artisan command to generate posts from frontmatter Markdown
 - [ ] Add theme color option
 - [ ] Image uploads
 - [ ] Write more tests
-- [ ] Add option to disable the "last updated" feature in the frontend
+- [x] Add option to disable the "last updated" feature in the frontend
 - [ ] Add option to disable the CMS (if one just wants to use plain markdown files)
 - [ ] Add drafts manager for the drafts stored in the user's localstorage
 
