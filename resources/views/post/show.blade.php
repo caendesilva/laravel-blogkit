@@ -18,6 +18,9 @@
 	@if(config('blog.withTags') && $post->tags)
 	<meta name="keywords" itemprop="keywords" content="{{ implode(', ', $post->tags) }}">
 	@endif
+	@if(config('blog.contentLicense.enabled'))
+	<meta itemprop="license" content="{{ config('blog.contentLicense.link') }}">
+	@endif
 	@endpush
 	
     <div class="relative flex items-top justify-center sm:items-center py-4 sm:pt-0">
@@ -83,8 +86,19 @@
 					{!! $markdown !!}
 				</section>
 
-				@if(config('blog.allowComments'))
-				<footer id="comments" class="border-t-2 dark:border-gray-600 mt-5 pt-5 pb-2">
+				<footer>
+					@if(config('blog.allowComments'))
+				@if(config('blog.contentLicense.enabled'))
+				<small class="mx-1" itemprop="license" itemscope itemtype="https://schema.org/CreativeWork">
+					{{ __('This post is licensed under') }}
+					<a href="{{ config('blog.contentLicense.link') }}" itemprop="url" rel="copyright">
+						<span itemprop="name">
+							{{ config('blog.contentLicense.name') }}
+						</span>
+					</a>
+				</small>
+				@endif
+				<section id="comments" class="border-t-2 dark:border-gray-600 mt-5 pt-5 pb-2">
 					<h2 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h2>
 					@if($post->comments)
 						<ul>
@@ -133,8 +147,9 @@
 						@endif
 						to leave a comment! 
 					@endguest
-				</footer>
+				</section>
 				@endif
+				</footer>
 			</article>
 
 			<div class="text-center dark:text-white mt-8 sm:hidden">
