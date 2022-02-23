@@ -25,11 +25,11 @@ class PostPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\User|null  $user
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Post $post)
+    public function view(?User $user, Post $post)
     {
         if ($post->isPublished()) {
             return true;
