@@ -18,6 +18,9 @@
 *  **Users & Comments:** Users can create accounts and leave comments. If you want them too. You can even require users to verify their emails to comment.
 *  **Semantic and data-rich SEO-minded HTML:** The frontend adheres to follow the practices of Semantic HTML. Blog articles are automatically injected with Open Graph meta tags for better SEO. 
 
+## Full Documentation
+Full documentation is available at https://docs.desilva.se/blogkit/. Generated using my free [Laradocgen](https://github.com/caendesilva/laradocgen) package!
+
 ## Demos:
 Static demo of the default install: https://caendesilva.github.io/laravel-blogkit-static-demo/
 Live blog (my own (customized) blog built with this kit): https://blog.desilva.se/
