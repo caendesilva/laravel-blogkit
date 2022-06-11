@@ -10,6 +10,10 @@
 
 <img src="https://cdn.jsdelivr.net/gh/caendesilva/laravel-blogkit-static-demo@latest/storage/screenshots/devices/laptop_composite-min.png" />
 
+## Not activly maintained
+This project is currently not receiving new features as I am focusing on [HydePHP](https://github.com/hydephp/hyde), however,
+the project will continue to get security fixes indefinitely. Open source contributions are welcome!
+
 ## Features
 * **Highly Customizable:** Turn features on and off in the config
 *  **Security Focused CMS:** A CMS for Posts, Users, and Comments with strong and customizable security policies is included out of the box. You can easily update user's permissions as well.
