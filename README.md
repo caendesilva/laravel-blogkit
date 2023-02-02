@@ -12,7 +12,7 @@
 
 ## Not activly maintained
 This project is currently not receiving new features as I am focusing on [HydePHP](https://github.com/hydephp/hyde), however,
-the project will continue to get security fixes indefinitely. Open source contributions are welcome!
+the project will continue to get security fixes as long as Laravel 9 is still supported. Open source contributions are welcome!
 
 ## Features
 * **Highly Customizable:** Turn features on and off in the config
