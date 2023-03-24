@@ -8,3 +8,4 @@
 
 /.github export-ignore
 CHANGELOG.md export-ignore
+public/js/app.js linguist-generated
