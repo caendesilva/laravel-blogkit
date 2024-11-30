@@ -31,10 +31,8 @@ class PageView extends Model
         parent::boot();
 
         static::creating(function (self $model): void {
-            // Normalize the page URL to use HTTPS
-            $model->page = Str::startsWith($model->page, 'http://')
-                ? Str::replaceFirst('http://', 'https://', $model->page)
-                : $model->page;
+            // Normalize the page URL to use the path only
+            $model->page = (parse_url($model->page, PHP_URL_PATH) ?? '/');
 
             // We only store the domain of the referrer
             if ($model->referrer) {
@@ -112,10 +110,5 @@ class PageView extends Model
         }
 
         return substr(hash('sha256', $ip.$request->userAgent().config('hashing.anonymizer_salt').now()->format('Y-m-d')), 0, 40);
-    }
-
-    public function pagePath(): string
-    {
-        return parse_url($this->page, PHP_URL_PATH) ?? '/';
     }
 }
