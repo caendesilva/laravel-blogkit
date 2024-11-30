@@ -151,10 +151,28 @@ class Post extends Model
             throw new \BadMethodCallException('Analytics are not enabled');
         }
 
-        return cache()->remember(
-            "post.{$this->id}.views",
-            now()->addMinutes(config('analytics.view_count_cache_duration')),
-            fn() => PageView::where('page', route('posts.show', $this, false))->count()
-        );
+        $cacheKey = "post.{$this->id}.views";
+        $cacheDuration = config('analytics.view_count_cache_duration');
+
+        // Get the cached value (even if expired)
+        $value = cache()->get($cacheKey);
+        
+        if ($value !== null) {
+            // If the cache exists but is stale, dispatch background refresh
+            if (! cache()->has($cacheKey)) {
+                dispatch(function () use ($cacheKey, $cacheDuration) {
+                    $newValue = PageView::where('page', route('posts.show', $this, false))->count();
+                    cache()->put($cacheKey, $newValue, now()->addMinutes($cacheDuration));
+                })->afterResponse();
+            }
+            
+            return $value;
+        }
+
+        // If no cached value exists at all, fetch and cache synchronously
+        $value = PageView::where('page', route('posts.show', $this, false))->count();
+        cache()->put($cacheKey, $value, now()->addMinutes($cacheDuration));
+        
+        return $value;
     }
 }
