@@ -141,4 +141,20 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class, 'post_id', 'id');
     }
+
+    /**
+     * Get the view count for the post
+     */
+    public function getViewCount(): int
+    {
+        if (! config('analytics.enabled')) {
+            throw new \BadMethodCallException('Analytics are not enabled');
+        }
+
+        return cache()->remember(
+            "post.{$this->id}.views",
+            now()->addHours(1),
+            fn() => PageView::where('page', route('posts.show', $this, false))->count()
+        );
+    }
 }

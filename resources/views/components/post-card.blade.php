@@ -29,18 +29,27 @@
             <span class="opacity-75" role="none">&bullet;</span>
             <time datetime="{{ $post->published_at }}" title="Published {{ $post->published_at }}">{{ $post->published_at->format('Y-m-d') }}</time>.
             @endif
-            @if(config('blog.allowComments'))
-            <span class="inline float-right">
-                <span class="sr-only">
-                    The post has {{ $post->comments->count() }} comments.
-                    <a href="{{ route('posts.show', $post) }}#comments">Go to post comment section</a>
+            @if(config('blog.allowComments') || config('analytics.enabled'))
+                <span class="inline float-right">
+                    @if(config('analytics.enabled'))
+                        <span class="{{ config('blog.allowComments') ? 'mr-2' : '' }}" role="none" aria-hidden="true" title="{{ number_format($post->getViewCount()) }} views">
+                            <svg class="inline fill-gray-500 dark:text-gray-300" role="presentation" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            {{ number_format($post->getViewCount()) }}
+                        </span>
+                    @endif
+
+                    @if(config('blog.allowComments'))
+                        <span class="sr-only">
+                        The post has {{ $post->comments->count() }} comments.
+                            <a href="{{ route('posts.show', $post) }}#comments">Go to post comment section</a>
+                        </span>
+                        
+                        <a href="{{ route('posts.show', $post) }}#comments" role="none" aria-hidden="true" title="{{ $post->comments->count() }} comments">
+                            <svg class="inline fill-gray-500 dark:text-gray-300" role="presentation" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+                            {{ $post->comments->count() }}
+                        </a>
+                    @endif
                 </span>
-                
-                <a href="{{ route('posts.show', $post) }}#comments" role="none" aria-hidden="true" title="{{ $post->comments->count() }} comments">
-                    <svg class="inline fill-gray-500 dark:text-gray-300" role="presentation" xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM18 14H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-                    {{ $post->comments->count() }}
-                </a>
-            </span>
             @endif
         </p>
 
