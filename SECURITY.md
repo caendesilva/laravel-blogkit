@@ -6,6 +6,7 @@
 | --------------- | --------------- | ------------------ |
 | v1.x             | Laravel 9       | :x:                |
 | v2.x             | Laravel 10      | :white_check_mark: |
+| v3.x             | Laravel 11      | :white_check_mark: |
 
 This project is currently not receiving new features as I am focusing on [HydePHP](https://github.com/hydephp/hyde),
 however, the project will continue to get security fixes indefinitely. Open source contributions are welcome!
