@@ -56,7 +56,6 @@
 							</tr>
 						</thead>
 					</table>
-					<p class="text-lg" itemprop="description">{{ $post->description }}</p>
 					<div aria-label="About the post" role="doc-introduction">
 						<ul class="text-sm flex flex-row flex-wrap -mx-1 mt-1 mb-2">
 							<li class="mx-1" name="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
