@@ -54,15 +54,17 @@ class DashboardController extends Controller
                     'unique_visitors' => $pageViews->groupBy('anonymous_id')->count(),
                     'popular_pages' => PageView::select('page')
                         ->selectRaw('COUNT(*) as views')
+                        ->selectRaw('COUNT(DISTINCT anonymous_id) as visitors')
                         ->groupBy('page')
                         ->orderByDesc('views')
                         ->limit(10)
                         ->get(),
                     'top_referrers' => PageView::whereNotNull('referrer')
                         ->select('referrer')
-                        ->selectRaw('COUNT(*) as count')
+                        ->selectRaw('COUNT(*) as views')
+                        ->selectRaw('COUNT(DISTINCT anonymous_id) as visitors')
                         ->groupBy('referrer')
-                        ->orderByDesc('count')
+                        ->orderByDesc('views')
                         ->limit(10)
                         ->get(),
                     'traffic_data' => [

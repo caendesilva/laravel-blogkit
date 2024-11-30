@@ -440,6 +440,7 @@
                                     <thead>
                                         <tr>
                                             <x-th>Page</x-th>
+                                            <x-th>Visitors</x-th>
                                             <x-th>Views</x-th>
                                         </tr>
                                     </thead>
@@ -447,6 +448,7 @@
                                         @foreach($analytics['popular_pages'] as $page)
                                         <tr>
                                             <x-td>{{ $page->pagePath() }}</x-td>
+                                            <x-td>{{ number_format($page->visitors) }}</x-td>
                                             <x-td>{{ number_format($page->views) }}</x-td>
                                         </tr>
                                         @endforeach
@@ -463,14 +465,16 @@
                                     <thead>
                                         <tr>
                                             <x-th>Source</x-th>
-                                            <x-th>Visits</x-th>
+                                            <x-th>Visitors</x-th>
+                                            <x-th>Views</x-th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($analytics['top_referrers'] as $referrer)
                                         <tr>
                                             <x-td>{{ $referrer->referrer }}</x-td>
-                                            <x-td>{{ number_format($referrer->count) }}</x-td>
+                                            <x-td>{{ number_format($referrer->visitors) }}</x-td>
+                                            <x-td>{{ number_format($referrer->views) }}</x-td>
                                         </tr>
                                         @endforeach
                                     </tbody>
