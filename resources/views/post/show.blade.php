@@ -56,8 +56,7 @@
 							</tr>
 						</thead>
 					</table>
-					<p class="text-lg" itemprop="description">{{ $post->description }}</p>
-					<div aria-label="About the post" role="doc-introduction">
+					<div class="mt-2" aria-label="About the post" role="doc-introduction">
 						<ul class="text-sm flex flex-row flex-wrap -mx-1 mt-1 mb-2">
 							<li class="mx-1" name="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
 								<span class="opacity-75">
@@ -90,13 +89,15 @@
 							@endif
 						</ul>
 					</div>
-					<figure class=" rounded-lg overflow-hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-						<meta itemprop="url" content="{{ $post->featured_image }}">
-						<img itemprop="image" src="{{ $post->featured_image }}" alt="Featured Image" class="post-header-image object-cover">
-					</figure>
+					@if($post->featured_image && basename($post->featured_image) != 'default.jpg')
+						<figure class=" rounded-lg overflow-hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+							<meta itemprop="url" content="{{ $post->featured_image }}">
+							<img itemprop="image" src="{{ $post->featured_image }}" alt="Featured Image" class="post-header-image object-cover">
+						</figure>
+					@endif
 				</header>
 				
-				<section itemprop="articleBody" class="prose dark:prose-invert pb-3">
+				<section itemprop="articleBody" class="prose dark:prose-invert max-w-none pb-3">
 					{!! $markdown !!}
 				</section>
 

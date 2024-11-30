@@ -3,8 +3,8 @@
         <h1 class="text-3xl font-bold dark:text-white my-3">Update Comment</h1>
         <section class="bg-white rounded-lg shadow-md dark:bg-gray-800 py-6 px-6 dark:text-white">
             <form wire:submit.prevent="save" class="text-gray-900">
-                <x-textarea wire:model="comment.content" class="w-full" placeholder="Update comment" rows="8" required maxlength="1024"></x-textarea>
-                <div>@error('comment.content') <span class="text-red-500">{{ $message }}</span> @enderror</div>
+                <x-textarea wire:model="content" class="w-full" placeholder="Update comment" rows="8" required maxlength="1024"></x-textarea>
+                <div>@error('content') <span class="text-red-500">{{ $message }}</span> @enderror</div>
         
                 <div class="flex items-center justify-end mt-4">
                     <x-button-secondary :href="route('posts.show', $comment->post) . '#comment-' . $this->comment->id">

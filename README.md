@@ -6,13 +6,13 @@
 
 # Laravel Blog Starter Kit
 
-## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 10, TailwindCSS, AlpineJS, and Livewire!
+## Kickstart the development of your Laravel Blog with this Starter Kit built Laravel 11, TailwindCSS, AlpineJS, and Livewire!
 
 <img src="https://cdn.jsdelivr.net/gh/caendesilva/laravel-blogkit-static-demo@latest/storage/screenshots/devices/laptop_composite-min.png" />
 
 ## Not actively maintained
 This project is currently not receiving new features as I am focusing on [HydePHP](https://github.com/hydephp/hyde), however,
-the project will continue to get security fixes as long as Laravel 10 is still supported. Open source contributions are welcome!
+the project will continue to get security fixes as long as Laravel 11 is still supported. Open source contributions are welcome!
 
 ## Features
 * **Highly Customizable:** Turn features on and off in the config
@@ -30,6 +30,23 @@ Static demo of the default install: https://caendesilva.github.io/laravel-blogki
 Live blog (my own (customized) blog built with this kit): https://blog.desilva.se/
 
 ## Get Started
+
+### Quick Install
+
+```bash
+git clone https://github.com/caendesilva/laravel-blogkit.git
+cd laravel-blogkit
+composer install
+npm install && npm run prod
+cp .env.example .env
+php artisan migrate
+php artisan key:generate
+php artisan storage:link
+php artisan admin:create
+
+php artisan serve
+```
+
 Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
 
 ### How to set up the blog using the demo settings
@@ -76,7 +93,7 @@ Current todo list:
 The Starter Kit is a modern [TALL stack](https://tallstack.dev/) application based on [Laravel Breeze](https://github.com/laravel/breeze) (MIT) using:
 - [TailwindCSS 3](https://tailwindcss.com/) (MIT)
 - [AlpineJS 3](https://alpinejs.dev/) (MIT)
-- [Laravel 10](https://laravel.com/) (MIT)
+- [Laravel 11](https://laravel.com/) (MIT)
 - [Livewire 2](https://laravel-livewire.com/) (MIT)
 
 Featured images on blog posts used by the seeder come from [Unsplash](https://unsplash.com/) via [picsum.photos](https://picsum.photos/) (Image License)[https://unsplash.com/license]
