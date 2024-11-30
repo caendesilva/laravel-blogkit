@@ -56,7 +56,7 @@
 							</tr>
 						</thead>
 					</table>
-					<div aria-label="About the post" role="doc-introduction">
+					<div class="mt-2" aria-label="About the post" role="doc-introduction">
 						<ul class="text-sm flex flex-row flex-wrap -mx-1 mt-1 mb-2">
 							<li class="mx-1" name="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
 								<span class="opacity-75">
