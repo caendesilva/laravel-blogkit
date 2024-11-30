@@ -27,6 +27,16 @@ class AnalyticsMiddleware
 
         // Use the terminate method to execute code after the response is sent.
         app()->terminating(function () use ($request) {
+            $path = $request->path();
+            $excludedPaths = Config::get('analytics.excluded_paths', []);
+
+            // Check if the current path matches any excluded paths
+            foreach ($excludedPaths as $excludedPath) {
+                if (str_is($excludedPath, $path)) {
+                    return;
+                }
+            }
+
             PageView::fromRequest($request);
         });
 

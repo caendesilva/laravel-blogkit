@@ -36,4 +36,20 @@ return [
     */
     'view_count_cache_duration' => 3600, // 1 hour
 
+    /*
+    |--------------------------------------------------------------------------
+    | Excluded Paths
+    |--------------------------------------------------------------------------
+    |
+    | List of paths that should be excluded from analytics tracking.
+    | Supports wildcards using * (e.g. 'api/*', 'admin/*').
+    |
+    */
+    'excluded_paths' => [
+        // Examples:
+        // 'api/*',
+        // 'admin/*',
+        // 'health-check',
+    ],
+
 ];
