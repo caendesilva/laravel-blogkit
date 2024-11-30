@@ -30,6 +30,23 @@ Static demo of the default install: https://caendesilva.github.io/laravel-blogki
 Live blog (my own (customized) blog built with this kit): https://blog.desilva.se/
 
 ## Get Started
+
+### Quick Install
+
+```bash
+git clone https://github.com/caendesilva/laravel-blogkit.git
+cd laravel-blogkit
+composer install
+npm install && npm run prod
+cp .env.example .env
+php artisan migrate
+php artisan key:generate
+php artisan storage:link
+php artisan admin:create
+
+php artisan serve
+```
+
 Once you have installed the Laravel app you can use the helper command to create an admin account using `php artisan admin:create` in your terminal.
 
 ### How to set up the blog using the demo settings
