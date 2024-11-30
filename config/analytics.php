@@ -23,4 +23,16 @@ return [
     |
     */
     'anonymization_salt' => env('ANALYTICS_SALT', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | View Count Cache Duration
+    |--------------------------------------------------------------------------
+    |
+    | The duration in minutes to cache post view counts. This helps reduce
+    | database load while keeping view counts reasonably up to date.
+    |
+    */
+    'view_count_cache_duration' => 3600, // 1 hour
+
 ];

@@ -153,7 +153,7 @@ class Post extends Model
 
         return cache()->remember(
             "post.{$this->id}.views",
-            now()->addHours(1),
+            now()->addMinutes(config('analytics.view_count_cache_duration')),
             fn() => PageView::where('page', route('posts.show', $this, false))->count()
         );
     }
