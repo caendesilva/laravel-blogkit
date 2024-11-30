@@ -446,7 +446,7 @@
                                     <tbody>
                                         @foreach($analytics['popular_pages'] as $page)
                                         <tr>
-                                            <x-td>{{ $page->page }}</x-td>
+                                            <x-td>{{ $page->pagePath() }}</x-td>
                                             <x-td>{{ number_format($page->views) }}</x-td>
                                         </tr>
                                         @endforeach
