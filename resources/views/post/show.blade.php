@@ -90,10 +90,12 @@
 							@endif
 						</ul>
 					</div>
-					<figure class=" rounded-lg overflow-hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-						<meta itemprop="url" content="{{ $post->featured_image }}">
-						<img itemprop="image" src="{{ $post->featured_image }}" alt="Featured Image" class="post-header-image object-cover">
-					</figure>
+					@if($post->featured_image && basename($post->featured_image) != 'default.jpg')
+						<figure class=" rounded-lg overflow-hidden" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+							<meta itemprop="url" content="{{ $post->featured_image }}">
+							<img itemprop="image" src="{{ $post->featured_image }}" alt="Featured Image" class="post-header-image object-cover">
+						</figure>
+					@endif
 				</header>
 				
 				<section itemprop="articleBody" class="prose dark:prose-invert max-w-none pb-3">
