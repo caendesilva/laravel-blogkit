@@ -407,6 +407,117 @@
             </section>
             @endif
 
+            @if(isset($analytics))
+            <section class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg my-5">
+                <div class="p-6">
+                    <header class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold">Analytics Overview</h3>
+                    </header>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="text-2xl font-bold">{{ number_format($analytics['total_views']) }}</div>
+                            <div class="text-gray-600 dark:text-gray-400">Total Page Views</div>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="text-2xl font-bold">{{ number_format($analytics['unique_visitors']) }}</div>
+                            <div class="text-gray-600 dark:text-gray-400">Unique Visitors</div>
+                        </div>
+                    </div>
+
+                    <!-- Traffic Chart -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold mb-2">Traffic (Last 30 Days)</h4>
+                        <canvas id="trafficChart" height="200" style="max-height: 200px;"></canvas>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Popular Pages -->
+                        <div>
+                            <h4 class="text-lg font-semibold mb-2">Popular Pages</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr>
+                                            <x-th>Page</x-th>
+                                            <x-th>Views</x-th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($analytics['popular_pages'] as $page)
+                                        <tr>
+                                            <x-td>{{ $page->page }}</x-td>
+                                            <x-td>{{ number_format($page->views) }}</x-td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Top Referrers -->
+                        <div>
+                            <h4 class="text-lg font-semibold mb-2">Top Referrers</h4>
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr>
+                                            <x-th>Source</x-th>
+                                            <x-th>Visits</x-th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($analytics['top_referrers'] as $referrer)
+                                        <tr>
+                                            <x-td>{{ $referrer->referrer }}</x-td>
+                                            <x-td>{{ number_format($referrer->count) }}</x-td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            @push('scripts')
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctx = document.getElementById('trafficChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: @json($analytics['traffic_data']['dates']),
+                        datasets: [{
+                            label: 'Page Views',
+                            data: @json($analytics['traffic_data']['views']),
+                            borderColor: 'rgb(59, 130, 246)',
+                            tension: 0.1
+                        }, {
+                            label: 'Unique Visitors',
+                            data: @json($analytics['traffic_data']['unique']),
+                            borderColor: 'rgb(239, 68, 68)',
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        interaction: {
+                            intersect: false,
+                            mode: 'index'
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+            @endpush
+            @endif
+
             @push('scripts')
             <livewire:edit-user-form-modal />
 
