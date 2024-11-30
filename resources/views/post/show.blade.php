@@ -96,7 +96,7 @@
 					</figure>
 				</header>
 				
-				<section itemprop="articleBody" class="prose dark:prose-invert pb-3">
+				<section itemprop="articleBody" class="prose dark:prose-invert max-w-none pb-3">
 					{!! $markdown !!}
 				</section>
 
