@@ -87,6 +87,15 @@
 								<x-post-tags :tags="$post->tags" class="inline-flex" itemprop="keywords" :commaseparated="true"/>
 							</li>
 							@endif
+							@if(config('analytics.enabled'))
+							<li class="mx-1 opacity-75" name="view_count">
+								<span itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+									<meta itemprop="interactionType" content="http://schema.org/ViewAction"/>
+									<span itemprop="userInteractionCount">{{ number_format($post->getViewCount()) }}</span>
+								</span>
+								views
+							</li>
+							@endif
 						</ul>
 					</div>
 					@if($post->featured_image && basename($post->featured_image) != 'default.jpg')
