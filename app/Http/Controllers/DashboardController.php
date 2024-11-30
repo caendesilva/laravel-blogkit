@@ -60,6 +60,15 @@ class DashboardController extends Controller
                         ->limit(10)
                         ->get(),
                     'top_referrers' => PageView::whereNotNull('referrer')
+                        ->where('referrer', 'not like', '?ref=%')
+                        ->select('referrer')
+                        ->selectRaw('COUNT(*) as views')
+                        ->selectRaw('COUNT(DISTINCT anonymous_id) as visitors')
+                        ->groupBy('referrer')
+                        ->orderByDesc('views')
+                        ->limit(10)
+                        ->get(),
+                    'top_refs' => PageView::where('referrer', 'like', '?ref=%')
                         ->select('referrer')
                         ->selectRaw('COUNT(*) as views')
                         ->selectRaw('COUNT(DISTINCT anonymous_id) as visitors')

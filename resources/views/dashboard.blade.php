@@ -458,9 +458,22 @@
                         </div>
 
                         <!-- Top Referrers -->
-                        <div>
-                            <h4 class="text-lg font-semibold mb-2">Top Referrers</h4>
-                            <div class="overflow-x-auto">
+                        <div x-data="{ activeTab: 'referrers' }">
+                            <header class="flex space-x-2 mb-2">
+                                <button @click="activeTab = 'referrers'" 
+                                        :class="{ 'opacity-100 font-semibold': activeTab === 'referrers', 'opacity-50': activeTab !== 'referrers' }"
+                                        class="text-lg">
+                                    Referrers
+                                </button>
+                                <button @click="activeTab = 'refs'" 
+                                        :class="{ 'opacity-100 font-semibold': activeTab === 'refs', 'opacity-50': activeTab !== 'refs' }"
+                                        class="text-lg">
+                                    Refs
+                                </button>
+                            </header>
+
+                            <!-- Referrers Table -->
+                            <div x-show="activeTab === 'referrers'" class="overflow-x-auto" x-cloak>
                                 <table class="w-full">
                                     <thead>
                                         <tr>
@@ -472,9 +485,31 @@
                                     <tbody>
                                         @foreach($analytics['top_referrers'] as $referrer)
                                         <tr>
-                                            <x-td>{{ $referrer->referrer }}</x-td>
+                                            <x-td>{{ $referrer->referrer ?: 'Direct / Unknown' }}</x-td>
                                             <x-td>{{ number_format($referrer->visitors) }}</x-td>
                                             <x-td>{{ number_format($referrer->views) }}</x-td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Refs Table -->
+                            <div x-show="activeTab === 'refs'" class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr>
+                                            <x-th>Refs</x-th>
+                                            <x-th>Visitors</x-th>
+                                            <x-th>Views</x-th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($analytics['top_refs'] as $ref)
+                                        <tr>
+                                            <x-td>{{ Str::after($ref->referrer, '?ref=') }}</x-td>
+                                            <x-td>{{ number_format($ref->visitors) }}</x-td>
+                                            <x-td>{{ number_format($ref->views) }}</x-td>
                                         </tr>
                                         @endforeach
                                     </tbody>
