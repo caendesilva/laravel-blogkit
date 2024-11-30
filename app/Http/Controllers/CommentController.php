@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use App\Http\Livewire\EditCommentForm;
+use App\Livewire\EditCommentForm;
 
 class CommentController extends Controller
 {
