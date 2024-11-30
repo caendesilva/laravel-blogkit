@@ -417,7 +417,7 @@
                  * @param integer (user) id
                  */
                 function openEditUserModal(id) {
-                    Livewire.emit('openEditUserModal', id)
+                    Livewire.dispatch('openEditUserModal', { id: id });
                 }
             </script>
             @endpush
