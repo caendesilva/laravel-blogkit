@@ -10,6 +10,8 @@ class LatestBlogPosts extends Component
 {
     use WithPagination;
 
+    public $numberOfPaginatorsRendered = [];
+
     public function render()
     {
         $posts = Post::paginate(12);
