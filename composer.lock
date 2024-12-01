@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e470b1e23dbfea23f42e52950ea9627",
+    "content-hash": "455eb9687df7b6a251e071a1fe924b9a",
     "packages": [
         {
             "name": "brick/math",
@@ -5758,6 +5758,71 @@
             "time": "2023-12-08T13:03:43+00:00"
         },
         {
+            "name": "torchlight/torchlight-commonmark",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caendesilva/torchlight-commonmark-php.git",
+                "reference": "60eff72b59ce042c30019e578be89aca56fb9c17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caendesilva/torchlight-commonmark-php/zipball/60eff72b59ce042c30019e578be89aca56fb9c17",
+                "reference": "60eff72b59ce042c30019e578be89aca56fb9c17",
+                "shasum": ""
+            },
+            "require": {
+                "league/commonmark": "^1.5|^2.0",
+                "php": "^7.2|^8.0",
+                "torchlight/torchlight-laravel": "^0.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Torchlight\\Commonmark\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Torchlight\\Commonmark\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Francis",
+                    "email": "aaron@hammerstone.dev"
+                }
+            ],
+            "description": "A Commonmark extension for Torchlight, the syntax highlighting API.",
+            "homepage": "https://torchlight.dev",
+            "keywords": [
+                "code highlighting",
+                "commonmark",
+                "laravel",
+                "markdown",
+                "syntax highlighting"
+            ],
+            "support": {
+                "source": "https://github.com/caendesilva/torchlight-commonmark-php/tree/main"
+            },
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://www.buymeacoffee.com/caen"
+                }
+            ],
+            "time": "2024-08-22T20:03:05+00:00"
+        },
+        {
             "name": "torchlight/torchlight-laravel",
             "version": "v0.6.0",
             "source": {
@@ -8588,7 +8653,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "torchlight/torchlight-commonmark": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
