@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^3.5",
         "spatie/yaml-front-matter": "^2.0",
-        "torchlight/torchlight-laravel": "^0.6.0"
+        "torchlight/torchlight-laravel": "^0.6.0",
+        "torchlight/torchlight-commonmark": "dev-main"
     },
     "require-dev": {
         "davidbadura/faker-markdown-generator": "^1.1",
@@ -63,5 +64,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/caendesilva/torchlight-commonmark-php"
+        }
+    ]
 }
